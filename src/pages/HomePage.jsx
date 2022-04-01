@@ -2,8 +2,10 @@ import { Container, Box, Item, Grid, Button, Avatar } from "@mui/material";
 import Header from "../components/Header";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
+import { useDocumentTitle } from "../hooks/custom";
 function HomePage() {
   const navigate = useNavigate();
+  useDocumentTitle("Home Page");
   return (
     <>
       <Box

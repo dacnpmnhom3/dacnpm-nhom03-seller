@@ -12,7 +12,9 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "./SignUpPage.css";
 import { Controller, useForm } from "react-hook-form";
+import { useDocumentTitle } from "../hooks/custom";
 function SignUpPage() {
+  useDocumentTitle("Sign Up Page");
   const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,

@@ -1,0 +1,34 @@
+.blue {
+  color: blue;
+}
+
+.tiki {
+  height: 30px;
+}
+
+.signup-img {
+  width: 80%;
+}
+.text-field {
+  background-color: white;
+  width: 70% !important;
+}
+.button-register {
+  width: 70% !important;
+}
+
+b {
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 992px) {
+  .signup-img {
+    width: 100%;
+  }
+  .button-register{
+    width: 100% !important;
+  }
+  .text-field {
+    width: 100% !important;
+  }
+}

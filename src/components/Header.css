@@ -1,0 +1,15 @@
+.logo {
+  height: 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 200px) {
+  .logo-right {
+    visibility: hidden;
+  }
+}

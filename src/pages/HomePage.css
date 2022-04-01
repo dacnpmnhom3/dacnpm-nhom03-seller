@@ -1,0 +1,55 @@
+.home-page-box {
+  height: 80vh;
+}
+.blue {
+  color: blue;
+}
+.button {
+  width: 400px;
+}
+
+.home-page-avatar {
+  width: 500px !important;
+  height: 500px !important;
+}
+@media screen and (max-width: 992x) {
+  .home-page-avatar {
+    width: 300px !important;
+    height: 300px !important;
+  }
+  .button {
+    width: 300px;
+  }
+  .home-page-box {
+    height: 50vh;
+  }
+}
+@media screen and (max-width: 780px) {
+  .home-page-box {
+    height: 40vh;
+  }
+  .home-page-avatar {
+    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 576x) {
+  .home-page-avatar {
+    visibility: hidden;
+  }
+  .button {
+    width: 200px;
+  }
+  .home-page-box {
+    height: 40vh;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .home-page-avatar {
+    visibility: hidden;
+  }
+  .button {
+    width: 200px;
+  }
+}

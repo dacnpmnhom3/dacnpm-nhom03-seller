@@ -2,18 +2,18 @@ import {
   Container,
   Grid,
   TextField,
-  Select,
-  MenuItem,
   Button,
   CircularProgress,
 } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import "./SignUpPage.css";
 import { Controller, useForm } from "react-hook-form";
 import { useDocumentTitle } from "../hooks/custom";
+import axiosClient from "../api/axiosClient";
 function SignUpPage() {
+  const navigate = useNavigate();
   useDocumentTitle("Sign Up Page");
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -26,9 +26,17 @@ function SignUpPage() {
   const onSubmit = (data) => {
     console.log(data);
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    axiosClient
+      .post("/api/seller", data)
+      .then((res) => {
+        console.log(res);
+        setIsLoading(false);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -99,21 +107,21 @@ function SignUpPage() {
             <b>Họ và tên</b>
           </div>
           <Controller
-            name="fullName"
+            name="name"
             control={control}
             defaultValue=""
             rules={{ required: true }}
             render={({ field }) => {
-              const check = errors.fullName
-                ? { helperText: "Please enter your full name" }
+              const check = errors.name
+                ? { helperText: "Please enter your  name" }
                 : null;
               return (
                 <TextField
                   className="text-field"
                   required
-                  error={!!errors.fullName}
+                  error={!!errors.name}
                   variant="outlined"
-                  placeholder="Input your full name"
+                  placeholder="Input your  name"
                   {...check}
                   fullWidth={true}
                   margin="dense"

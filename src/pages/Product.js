@@ -94,7 +94,7 @@ export default function Product() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/products");
+      const res = await axiosClient.get("/api/seller/products");
       setUser([...res.data]);
     } catch (error) {
       if (error.response.data) {

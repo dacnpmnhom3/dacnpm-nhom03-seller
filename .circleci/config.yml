@@ -1,0 +1,44 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.7.0
+  heroku: circleci/heroku@1.2.6
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    type: [opened, reopened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn build
+          name: Build app
+      - run:
+          command: yarn test
+          name: Run tests    
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+  deploy: # this can be any name you choose
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - heroku/deploy-via-git: 
+          force: true # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
+
+workflows:
+  build_on_commit:
+    jobs:
+      - build

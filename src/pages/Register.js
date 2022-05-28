@@ -8,7 +8,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import Page from "../components/Page";
 import { MHidden } from "../components/@material-extend";
 import AuthSocial from "../components/authentication/AuthSocial";
-import RegisterSeller from "src/components/authentication/register/RegisterSeller";
+import RegisterSeller from "components/authentication/register/RegisterSeller";
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)(({ theme }) => ({

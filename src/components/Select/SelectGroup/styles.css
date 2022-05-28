@@ -1,0 +1,8 @@
+
+.select-group--error .react-select__control {
+    border-color: red;
+}
+
+.select-group--error .react-select__placeholder {
+    color: red;
+}

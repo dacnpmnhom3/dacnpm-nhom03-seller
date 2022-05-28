@@ -1,12 +1,12 @@
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import { useParams, Link as RouterLink } from "react-router-dom";
-import UserProfileDetail from "src/components/_dashboard/user/UserProfileDetail";
-import UserProfile from "src/components/_dashboard/user/UserProfile";
+import UserProfileDetail from "components/_dashboard/user/UserProfileDetail";
+import UserProfile from "components/_dashboard/user/UserProfile";
 
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 
 export default function UserDetail() {
   const { userId } = useParams();

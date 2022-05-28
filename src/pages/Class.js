@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 
 import { Icon } from "@iconify/react";
 import plusFill from "@iconify/icons-eva/plus-fill";
@@ -10,9 +10,9 @@ import { Link as RouterLink } from "react-router-dom";
 import { Grid, Button, Container, Stack, Typography } from "@mui/material";
 // components
 import Page from "../components/Page";
-import ClassItem from "src/components/_dashboard/class/ClassItem";
-import ClassSearch from "src/components/_dashboard/class/ClassSearch";
-import ClassSort from "src/components/_dashboard/class/ClassSort";
+import ClassItem from "components/_dashboard/class/ClassItem";
+import ClassSearch from "components/_dashboard/class/ClassSearch";
+import ClassSort from "components/_dashboard/class/ClassSort";
 
 // ----------------------------------------------------------------------
 

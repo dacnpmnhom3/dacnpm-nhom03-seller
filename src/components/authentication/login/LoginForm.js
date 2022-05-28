@@ -16,9 +16,9 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import axiosClient from "src/api/axiosClient";
-import { setIsAuthenticated, setToken, setUser } from "src/redux/user";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setIsAuthenticated, setToken, setUser } from "redux/user";
+import { setErrorMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 // ----------------------------------------------------------------------
 
@@ -43,11 +43,20 @@ export default function LoginForm() {
     validationSchema: LoginSchema,
     onSubmit: async () => {
       try {
-        const res = await axiosClient.post("/api/seller/login", {
-          email: values.email,
-          password: values.password,
-        });
+        // const res = await axiosClient.post("/api/seller/login", {
+        //   email: values.email,
+        //   password: values.password,
+        // });
+        const res = {
+          data: {
+            token: "token",
+            user: {
+              photoURL: "",
+            },
+          },
+        };
         const { token, user } = res.data;
+
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(setToken(token));

@@ -18,7 +18,7 @@ import {
 import MenuPopover from "../../components/MenuPopover";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setIsAuthenticated } from "src/redux/user";
+import { setIsAuthenticated } from "redux/user";
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [

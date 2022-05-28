@@ -2,8 +2,8 @@ import { Stack, TextField, Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDocumentTitle } from "../../../hooks/custom";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

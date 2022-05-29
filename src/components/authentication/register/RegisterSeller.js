@@ -24,7 +24,7 @@ function RegisterSeller() {
     console.log(data);
     setIsLoading(true);
     try {
-      const res = await axiosClient.post("/api/seller", data);
+      await axiosClient.post("/api/seller/register", data);
       dispatch(setSuccessMsg("Register Successfully!"));
       navigate("/login", { replace: true });
     } catch (error) {

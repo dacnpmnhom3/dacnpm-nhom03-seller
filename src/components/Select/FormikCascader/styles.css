@@ -1,0 +1,13 @@
+.formik-cascader .ant-cascader {
+    width: 100%;
+}
+
+.formik-cascader .ant-select-selector {
+    border-radius: 5px !important;
+    height: 56px !important;
+    padding: 8px 14px !important;
+}
+
+.formik-cascader .ant-select-selection-placeholder {
+    color: #6b7a87;
+}

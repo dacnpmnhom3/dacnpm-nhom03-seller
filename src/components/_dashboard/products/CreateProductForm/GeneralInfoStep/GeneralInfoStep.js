@@ -1,8 +1,11 @@
 import React, { memo } from "react";
 import { StepLabel, StepContent, Stack } from "@mui/material";
-import FormikTextField from "components/button/FormikTextField";
-import FormikSelectGroup from "components/select/FormikSelectGroup";
+
+// Mocks
 import { CATEGORIES } from "_mocks_/products";
+// Components
+import FormikCascader from "components/select/FormikCascader";
+import FormikTextField from "components/button/FormikTextField";
 
 const GeneralInfoStep = ({ nameField, categoryField, descField }) => {
   const formatCategories = (categories) => {
@@ -10,21 +13,20 @@ const GeneralInfoStep = ({ nameField, categoryField, descField }) => {
       if (category.sub_categories?.length > 0) {
         return {
           label: category.category_name,
-          options: category.sub_categories.map((subCategory) => {
-            return {
-              label: subCategory.category_name,
-              value: subCategory._id,
-            };
-          }),
+          value: category._id,
+          children: formatCategories(category.sub_categories),
         };
       } else {
         return {
           label: category.category_name,
           value: category._id,
+          product_variations: category.product_variations,
+          properties: category.properties,
         };
       }
     });
   };
+
   return (
     <>
       <StepLabel>General infomation</StepLabel>
@@ -35,9 +37,9 @@ const GeneralInfoStep = ({ nameField, categoryField, descField }) => {
             label={nameField.label}
             name={nameField.name}
           />
-          <FormikSelectGroup
-            label={categoryField.label}
+          <FormikCascader
             name={categoryField.name}
+            label={categoryField.label}
             options={formatCategories(CATEGORIES)}
           />
           <FormikTextField

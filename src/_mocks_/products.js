@@ -42,30 +42,98 @@ const PRODUCT_COLOR = [
   "#FFC107",
 ];
 
+const a = {
+  _id: { $oid: "62837fbee3a57b4ebaa3886b" },
+  category_name: "Phone",
+  icon: "https://cdn.tgdd.vn//content/icon-phone-96x96-2.png",
+  ancestor_category: null,
+  properties: [
+    {
+      name: "Model",
+      sub_properties: ["Brand", "Series", "Model"],
+      _id: { $oid: "62837fbee3a57b4ebaa3886c" },
+    },
+    {
+      name: "Network",
+      sub_properties: ["Technology", "Bands & Frequencies"],
+      _id: { $oid: "62837fbee3a57b4ebaa3886d" },
+    },
+    {
+      name: "Design",
+      sub_properties: [
+        "Form Factor",
+        "Color",
+        "SIM Card Type",
+        "Sensors",
+        "Audio Connectors",
+      ],
+      _id: { $oid: "62837fbee3a57b4ebaa3886e" },
+    },
+  ],
+  product_variations: ["color", "capacity"],
+  createdAt: { $date: { $numberLong: "1652785086705" } },
+  updatedAt: { $date: { $numberLong: "1652785086705" } },
+  __v: 0,
+};
+
 const CATEGORIES = [
   {
     _id: "62837fbee3a57b4ebaa3886b",
     category_name: "Phone",
     icon: "https://cdn.tgdd.vn//content/icon-phone-96x96-2.png",
     ancestor_category: null,
-  },
-  {
-    _id: "6283840ae3a57b4ebaa38878",
-    category_name: "Sound device",
-    icon: "",
-    ancestor_category: "62838314e3a57b4ebaa38875",
-    sub_categories: [
+    properties: [
       {
-        _id: "6283875ee3a57b4ebaa3887d",
-        category_name: "Head Phone",
-        icon: "",
-        ancestor_category: "6283840ae3a57b4ebaa38878",
+        name: "Model",
+        sub_properties: ["Brand", "Series", "Model"],
+        _id: "62837fbee3a57b4ebaa3886c",
       },
       {
-        _id: "62838ae7e3a57b4ebaa38880",
-        category_name: "Speaker",
+        name: "Network",
+        sub_properties: ["Technology", "Bands & Frequencies"],
+        _id: "62837fbee3a57b4ebaa3886d",
+      },
+      {
+        name: "Design",
+        sub_properties: [
+          "Form Factor",
+          "Color",
+          "SIM Card Type",
+          "Sensors",
+          "Audio Connectors",
+        ],
+        _id: "62837fbee3a57b4ebaa3886e",
+      },
+    ],
+    product_variations: ["color", "capacity"],
+  },
+  {
+    _id: "62838314e3a57b4ebaa38875",
+    category_name: "Accessories",
+    icon: "",
+    ancestor_category: null,
+    properties: [],
+    product_variations: [],
+    sub_categories: [
+      {
+        _id: "6283840ae3a57b4ebaa38878",
+        category_name: "Sound device",
         icon: "",
         ancestor_category: "6283840ae3a57b4ebaa38878",
+        sub_categories: [
+          {
+            _id: "6283875ee3a57b4ebaa3887d",
+            category_name: "Head Phone",
+            icon: "",
+            ancestor_category: "6283840ae3a57b4ebaa38878",
+          },
+          {
+            _id: "62838ae7e3a57b4ebaa38880",
+            category_name: "Speaker",
+            icon: "",
+            ancestor_category: "6283840ae3a57b4ebaa38878",
+          },
+        ],
       },
     ],
   },

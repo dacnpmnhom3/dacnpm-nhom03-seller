@@ -1,19 +1,23 @@
 import { useState, useEffect, useCallback } from "react";
-import { useDispatch } from "react-redux";
 import { Form, Formik } from "formik";
-
-// material
+import { useDispatch, useSelector } from "react-redux";
 import { Stack, Step, Stepper, Button } from "@mui/material";
+
+// Redux
 import { setErrorMsg } from "redux/alert";
+// Mocks
 import { CATEGORIES } from "_mocks_/products";
-import GeneralInfoStep from "./GeneralInfoStep";
+
 import {
-  createProductFormModel,
   initialValues,
+  createProductFormModel,
 } from "./createProductFormModel";
-import { generalInfoValidationSchema } from "./GeneralInfoStep/validationSchema";
 import AddOptionStep from "./AddOptionStep";
+import PropertiesStep from "./PropertiesStep";
+import GeneralInfoStep from "./GeneralInfoStep";
 import { addOptionValidationSchema } from "./AddOptionStep/validationSchema";
+import { propertiesValidationSchema } from "./PropertiesStep/validationSchema";
+import { generalInfoValidationSchema } from "./GeneralInfoStep/validationSchema";
 // ----------------------------------------------------------------------
 
 export default function CreateProductForm() {
@@ -58,13 +62,27 @@ export default function CreateProductForm() {
 
   const [categories, setCategories] = useState([]);
   const { formId, formField } = createProductFormModel;
-  const validation = [generalInfoValidationSchema, addOptionValidationSchema];
+  const validation = [
+    generalInfoValidationSchema,
+    propertiesValidationSchema,
+    addOptionValidationSchema,
+  ];
   const [activeStep, setActiveStep] = useState(0);
-  const isLastStep = activeStep === 3 - 1;
+  const isLastStep = activeStep === 4 - 1;
+  const { selectedCategory } = useSelector((state) => state.product);
 
   useEffect(() => {
     getCategories();
   }, []);
+
+  useEffect(() => {
+    selectedCategory?.properties?.map((property) => {
+      const subProp = property.sub_properties.map((subPropName) => ({
+        [subPropName]: "",
+      }));
+      return (initialValues.properties[property._id] = subProp);
+    });
+  }, [selectedCategory.properties]);
 
   const getCategories = async () => {
     try {
@@ -107,9 +125,10 @@ export default function CreateProductForm() {
       initialValues={initialValues}
       validationSchema={validation[activeStep]}
       onSubmit={handleSubmit}
+      // enableReinitialize={true}
     >
       {/* <Form autoComplete="off" noValidate onSubmit={handleSubmit}> */}
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values }) => (
         <Stack spacing={3}>
           <Form id={formId}>
             <Stepper activeStep={activeStep} orientation="vertical">
@@ -122,7 +141,13 @@ export default function CreateProductForm() {
                 />
               </Step>
               <Step>
-                <AddOptionStep typeField={formField.type} />
+                <PropertiesStep initialValues={initialValues} />
+              </Step>
+              <Step>
+                <AddOptionStep
+                  typeField={formField.type}
+                  haveManyOptions={values.type}
+                />
               </Step>
             </Stepper>
             <div>

@@ -5,7 +5,6 @@ import { useField } from "formik";
 const FormikTextField = ({ ...props }) => {
   const { ...rest } = props;
   const [field, meta] = useField(props);
-  // console.log(meta);
 
   return (
     <TextField

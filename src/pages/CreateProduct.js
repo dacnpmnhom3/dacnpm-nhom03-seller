@@ -26,7 +26,7 @@ const ContentStyle = styled("div")(({ theme }) => ({
   // maxWidth: 480,
   margin: "auto",
   display: "flex",
-  minHeight: "100vh",
+  // minHeight: "100vh",
   flexDirection: "column",
   justifyContent: "center",
   padding: theme.spacing(12, 0),

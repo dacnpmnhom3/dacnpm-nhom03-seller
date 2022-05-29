@@ -14,7 +14,7 @@ const options = [
   },
 ];
 
-const AddOptionStep = ({ typeField }) => {
+const AddOptionStep = ({ typeField, haveManyOptions }) => {
   return (
     <>
       <StepLabel>Add option</StepLabel>
@@ -22,10 +22,11 @@ const AddOptionStep = ({ typeField }) => {
         <Stack spacing={3}>
           <FormikRadioBtn
             options={options}
-            label={typeField.label}
             name={typeField.name}
+            label={typeField.label}
             defaultValue={options[0].value}
           />
+          {haveManyOptions}
         </Stack>
       </StepContent>
     </>

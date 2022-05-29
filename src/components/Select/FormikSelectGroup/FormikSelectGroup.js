@@ -10,10 +10,13 @@ import {
 } from "@mui/material";
 import { useField, Field } from "formik";
 import SelectGroup from "../SelectGroup";
+import Select from "react-select";
 
 const FormikSelectGroup = ({ ...props }) => {
   const { label, options, ...rest } = props;
   const [field, meta, helpers] = useField(props);
+
+  console.log();
 
   return (
     <FormControl fullWidth {...field} {...rest}>
@@ -21,8 +24,9 @@ const FormikSelectGroup = ({ ...props }) => {
         {() => (
           <>
             <SelectGroup
-              placeholder={label}
               options={options}
+              placeholder={label}
+              selectedValue={meta.value}
               error={Boolean(meta.touched && meta.error)}
               onChange={(selectedOption) =>
                 helpers.setValue(selectedOption.value)

@@ -15,17 +15,22 @@ export const createProductFormModel = {
       name: "desc",
       label: "Description (optional)",
     },
+    thumbnail: {
+      name: "thumbnail",
+      label: "Thumbnail",
+      requiredErrorMsg: "Thumbnail is required",
+    },
     type: {
       name: "type",
       label: "Type of product",
       options: [
         {
           label: "No option",
-          value: false,
+          value: "0",
         },
         {
           label: "Have many options",
-          value: true,
+          value: "1",
         },
       ],
       requiredErrorMsg: "Type is required",
@@ -34,11 +39,17 @@ export const createProductFormModel = {
       name: "properties",
       label: "Properties",
     },
-    zipcode: {
-      name: "zipcode",
-      label: "Zipcode*",
-      requiredErrorMsg: "Zipcode is required",
-      invalidErrorMsg: "Zipcode is not valid (e.g. 70000)",
+    variationAttr: {
+      name: "variationAttr",
+      label: "Variation atributes",
+    },
+    attributes: {
+      name: "attributes",
+      label: "Atributes",
+    },
+    variantion: {
+      name: "variations",
+      label: "Variations",
     },
   },
 };
@@ -49,12 +60,18 @@ export const initialValues = {
   [formField.name.name]: "",
   [formField.category.name]: "",
   [formField.desc.name]: "",
-  [formField.type.name]: false,
+  [formField.thumbnail.name]: undefined,
+  [formField.type.name]: "0",
   [formField.properties.name]: {},
-  // [formField.country.name]: "",
-  // [formField.useAddressForPaymentDetails.name]: false,
-  // [formField.nameOnCard.name]: "",
-  // [formField.cardNumber.name]: "",
-  // [formField.expiryDate.name]: "",
-  // [formField.cvv.name]: "",
+  [formField.variationAttr.name]: [],
+  [formField.variantion.name]: [
+    {
+      variation_attributes: [],
+      sku: "",
+      price: 0,
+      stock: 1,
+      images: [],
+    },
+  ],
+  [formField.attributes.name]: [],
 };

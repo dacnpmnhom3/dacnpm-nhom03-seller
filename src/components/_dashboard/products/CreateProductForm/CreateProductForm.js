@@ -73,6 +73,7 @@ export default function CreateProductForm() {
 
   useEffect(() => {
     getCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -82,7 +83,36 @@ export default function CreateProductForm() {
       }));
       return (initialValues.properties[property._id] = subProp);
     });
+
+    // initialValues.variationAttr = [];
+    // selectedCategory?.product_variations?.map(
+    //   (variation) => {
+    //     return initialValues.variationAttr.push({
+    //       name: variation,
+    //       values: [],
+    //     });
+    //   }
+    // );
   }, [selectedCategory.properties]);
+
+  // useEffect(() => {
+  //   selectedCategory?.properties?.map((property) => {
+  //     const subProp = property.sub_properties.map((subPropName) => ({
+  //       [subPropName]: "",
+  //     }));
+  //     return (initialValues.properties[property._id] = subProp);
+  //   });
+
+  //   initialValues.variationAttr = [];
+  //   selectedCategory?.product_variations?.map(
+  //     (variation) => {
+  //       return initialValues.variationAttr.push({
+  //         name: variation,
+  //         values: [],
+  //       });
+  //     }
+  //   );
+  // }, []);
 
   const getCategories = async () => {
     try {
@@ -118,6 +148,7 @@ export default function CreateProductForm() {
       actions.setTouched({});
       actions.setSubmitting(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -137,7 +168,9 @@ export default function CreateProductForm() {
                   activeStep={activeStep}
                   nameField={formField.name}
                   descField={formField.desc}
+                  thumbnail={values.thumbnail}
                   categoryField={formField.category}
+                  thumbnailField={formField.thumbnail}
                 />
               </Step>
               <Step>
@@ -147,6 +180,10 @@ export default function CreateProductForm() {
                 <AddOptionStep
                   typeField={formField.type}
                   haveManyOptions={values.type}
+                  thumbnail={values.thumbnail}
+                  variationsField={formField.variantion}
+                  variationAttrField={formField.variationAttr}
+                  attributesField={formField.attributes}
                 />
               </Step>
             </Stepper>

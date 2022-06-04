@@ -42,40 +42,6 @@ const PRODUCT_COLOR = [
   "#FFC107",
 ];
 
-const a = {
-  _id: { $oid: "62837fbee3a57b4ebaa3886b" },
-  category_name: "Phone",
-  icon: "https://cdn.tgdd.vn//content/icon-phone-96x96-2.png",
-  ancestor_category: null,
-  properties: [
-    {
-      name: "Model",
-      sub_properties: ["Brand", "Series", "Model"],
-      _id: { $oid: "62837fbee3a57b4ebaa3886c" },
-    },
-    {
-      name: "Network",
-      sub_properties: ["Technology", "Bands & Frequencies"],
-      _id: { $oid: "62837fbee3a57b4ebaa3886d" },
-    },
-    {
-      name: "Design",
-      sub_properties: [
-        "Form Factor",
-        "Color",
-        "SIM Card Type",
-        "Sensors",
-        "Audio Connectors",
-      ],
-      _id: { $oid: "62837fbee3a57b4ebaa3886e" },
-    },
-  ],
-  product_variations: ["color", "capacity"],
-  createdAt: { $date: { $numberLong: "1652785086705" } },
-  updatedAt: { $date: { $numberLong: "1652785086705" } },
-  __v: 0,
-};
-
 const CATEGORIES = [
   {
     _id: "62837fbee3a57b4ebaa3886b",
@@ -139,6 +105,58 @@ const CATEGORIES = [
   },
 ];
 
+const COLORS = {
+  variationName: "color",
+  options: [
+    {
+      label: "Red",
+      value: "red",
+    },
+    {
+      label: "Orange",
+      value: "orange",
+    },
+    {
+      label: "Yellow",
+      value: "yellow",
+    },
+    {
+      label: "Green",
+      value: "green",
+    },
+    {
+      label: "Blue",
+      value: "blue",
+    },
+    {
+      label: "Purple",
+      value: "purple",
+    },
+  ],
+};
+
+const CAPACITY = {
+  variationName: "capacity",
+  options: [
+    {
+      label: "32GB",
+      value: "32GB",
+    },
+    {
+      label: "64GB",
+      value: "64GB",
+    },
+    {
+      label: "128GB",
+      value: "128GB",
+    },
+    {
+      label: "256GB",
+      value: "256GB",
+    },
+  ],
+};
+
 // ----------------------------------------------------------------------
 
 const products = [...Array(24)].map((_, index) => {
@@ -166,4 +184,4 @@ const products = [...Array(24)].map((_, index) => {
 });
 
 export default products;
-export { CATEGORIES };
+export { CATEGORIES, COLORS, CAPACITY };

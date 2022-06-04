@@ -6,5 +6,5 @@ const {
 } = createProductFormModel;
 
 export const addOptionValidationSchema = Yup.object().shape({
-  [type.name]: Yup.bool().required(`${type.requiredErrorMsg}`),
+  [type.name]: Yup.string().required(`${type.requiredErrorMsg}`),
 });

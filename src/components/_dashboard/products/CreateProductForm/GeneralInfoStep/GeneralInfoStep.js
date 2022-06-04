@@ -5,9 +5,16 @@ import { StepLabel, StepContent, Stack } from "@mui/material";
 import { CATEGORIES } from "_mocks_/products";
 // Components
 import FormikCascader from "components/select/FormikCascader";
-import FormikTextField from "components/button/FormikTextField";
+import FormikTextField from "components/input/FormikTextField";
+import DragDropImageInput from "components/input/DragDropImageInput";
 
-const GeneralInfoStep = ({ nameField, categoryField, descField }) => {
+const GeneralInfoStep = ({
+  nameField,
+  descField,
+  categoryField,
+  thumbnailField,
+  thumbnail,
+}) => {
   const formatCategories = (categories) => {
     return categories.map((category) => {
       if (category.sub_categories?.length > 0) {
@@ -47,7 +54,12 @@ const GeneralInfoStep = ({ nameField, categoryField, descField }) => {
             label={descField.label}
             name={descField.name}
           />
-
+          <DragDropImageInput
+            maxFiles={1}
+            images={thumbnail}
+            label={thumbnailField.label}
+            name={thumbnailField.name}
+          />
           {/* <TextField
               fullWidth
               type="text"

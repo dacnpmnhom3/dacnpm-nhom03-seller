@@ -53,15 +53,18 @@ const DragDropImageInput = ({ ...props }) => {
         )
       );
 
-      let t = []
+      let t = [];
       acceptedFiles?.forEach((file) => {
         const reader = new FileReader();
-        reader.addEventListener("load", () => {
-          t.push(reader.result)
+        reader.addEventListener(
+          "load",
+          () => {
+            t.push(reader.result);
+          },
+          false
+        );
 
-        }, false);
-
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
       });
 
       helpers.setValue(t);
@@ -109,8 +112,9 @@ const DragDropImageInput = ({ ...props }) => {
           />
           <p>Drag 'n' drop some files here, or click to select files</p>
           <em>
-            {`(${maxFiles} file${maxFiles > 1 ? "s" : ""
-              } are the maximum number of files you can drop here)`}
+            {`(${maxFiles} file${
+              maxFiles > 1 ? "s" : ""
+            } are the maximum number of files you can drop here)`}
           </em>
         </div>
         {meta.touched && meta.error && (

@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { Form, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { Stack, Step, Stepper, Button } from "@mui/material";
 
 // Redux
-import { setErrorMsg } from "redux/alert";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 // Mocks
 import { CATEGORIES } from "_mocks_/products";
 
@@ -22,44 +24,9 @@ import { generalInfoValidationSchema } from "./GeneralInfoStep/validationSchema"
 
 export default function CreateProductForm() {
   const dispatch = useDispatch();
-  // const RegisterSchema = Yup.object().shape({
-  //   name: Yup.string()
-  //     .min(10, "Too Short!")
-  //     .max(50, "Too Long!")
-  //     .required("Name is required"),
-  //   desc: Yup.string().optional(),
-  //   img: Yup.string().required("Image is required"),
-  //   category: Yup.string().required("Category is required"),
-  //   price: Yup.number().required(),
-  //   stock: Yup.number().required().min(1, "Must greater than or equal 1"),
-  // });
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     name: "",
-  //     desc: "",
-  //     img: "",
-  //     category: "",
-  //     price: 0,
-  //     stock: 1,
-  //   },
-  //   validationSchema: RegisterSchema,
-  //   onSubmit: async () => {
-  //     try {
-  //       console.log(values);
-  //       const res = await axiosClient.post("/api/products/", values);
-  //       dispatch(setSuccessMsg("Add New Product Successfully!"));
-  //     } catch (error) {
-  //       if (error.response.data && error.response.data.message) {
-  //         dispatch(setErrorMsg(error.response.data.message));
-  //       } else console.log(error);
-  //     }
-  //   },
-  // });
-
-  // const { errors, touched, values, handleSubmit, isSubmitting, getFieldProps } =
-  //   formik;
-
+  const navigate = useNavigate();
+  const { selectedCategory } = useSelector((state) => state.product);
+  // eslint-disable-next-line no-unused-vars
   const [categories, setCategories] = useState([]);
   const { formId, formField } = createProductFormModel;
   const validation = [
@@ -68,8 +35,7 @@ export default function CreateProductForm() {
     addOptionValidationSchema,
   ];
   const [activeStep, setActiveStep] = useState(0);
-  const isLastStep = activeStep === 4 - 1;
-  const { selectedCategory } = useSelector((state) => state.product);
+  const isLastStep = activeStep === 3 - 1;
 
   useEffect(() => {
     getCategories();
@@ -83,36 +49,7 @@ export default function CreateProductForm() {
       }));
       return (initialValues.properties[property._id] = subProp);
     });
-
-    // initialValues.variationAttr = [];
-    // selectedCategory?.product_variations?.map(
-    //   (variation) => {
-    //     return initialValues.variationAttr.push({
-    //       name: variation,
-    //       values: [],
-    //     });
-    //   }
-    // );
   }, [selectedCategory.properties]);
-
-  // useEffect(() => {
-  //   selectedCategory?.properties?.map((property) => {
-  //     const subProp = property.sub_properties.map((subPropName) => ({
-  //       [subPropName]: "",
-  //     }));
-  //     return (initialValues.properties[property._id] = subProp);
-  //   });
-
-  //   initialValues.variationAttr = [];
-  //   selectedCategory?.product_variations?.map(
-  //     (variation) => {
-  //       return initialValues.variationAttr.push({
-  //         name: variation,
-  //         values: [],
-  //       });
-  //     }
-  //   );
-  // }, []);
 
   const getCategories = async () => {
     try {
@@ -129,27 +66,55 @@ export default function CreateProductForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   }, []);
 
-  const _submitForm = useCallback(
-    (values, actions) => {
-      alert(JSON.stringify(values, null, 2));
-      actions.setSubmitting(false);
+  const generateVariationField = (attributes) => {
+    if (attributes.length > 1) {
+    } else if (attributes.length === 1) {
+      initialValues.variations = attributes[0].map((attr) => ({
+        variation_attributes: [attr],
+        sku: "",
+        price: 0,
+        stock: 1,
+        images: [],
+      }));
+    }
+  };
 
-      setActiveStep(activeStep + 1);
+  const submitForm = useCallback(
+    async (values, actions) => {
+      try {
+        console.log(JSON.stringify(values, null, 2));
+        // const res = await axiosClient.post("/api/products/", values);
+        setTimeout(() => {
+          actions.setSubmitting(false);
+          navigate("/dashboard/products");
+          dispatch(setSuccessMsg("Add New Product Successfully!"));
+        }, 1000);
+      } catch (error) {
+        if (error.response.data && error.response.data.message) {
+          dispatch(setErrorMsg(error.response.data.message));
+        } else console.log(error);
+        actions.setSubmitting(false);
+      }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [activeStep]
   );
 
-  const handleSubmit = useCallback((values, actions) => {
-    if (isLastStep) {
-      _submitForm(values, actions);
-    } else {
-      console.log(values);
-      setActiveStep((prevState) => prevState + 1);
-      actions.setTouched({});
-      actions.setSubmitting(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const handleSubmit = useCallback(
+    (values, actions) => {
+      if (isLastStep) {
+        submitForm(values, actions);
+      } else {
+        console.log(values);
+        generateVariationField(values.attributes);
+        setActiveStep((prevState) => prevState + 1);
+        actions.setTouched({});
+        actions.setSubmitting(false);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [isLastStep, submitForm]
+  );
 
   return (
     <Formik
@@ -158,7 +123,6 @@ export default function CreateProductForm() {
       onSubmit={handleSubmit}
       // enableReinitialize={true}
     >
-      {/* <Form autoComplete="off" noValidate onSubmit={handleSubmit}> */}
       {({ isSubmitting, values }) => (
         <Stack spacing={3}>
           <Form id={formId}>
@@ -188,9 +152,15 @@ export default function CreateProductForm() {
               </Step>
             </Stepper>
             <div>
-              <Button type="submit" variant="contained" sx={{ mt: 1, mr: 1 }}>
+              <LoadingButton
+                loading={isSubmitting}
+                loadingIndicator="Submitting..."
+                type="submit"
+                variant="contained"
+                sx={{ mt: 1, mr: 1 }}
+              >
                 {isLastStep ? "Add product" : "Continue"}
-              </Button>
+              </LoadingButton>
               <Button
                 sx={{ mt: 1, mr: 1 }}
                 disabled={activeStep === 0}

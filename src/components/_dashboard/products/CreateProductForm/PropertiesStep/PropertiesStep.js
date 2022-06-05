@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 import { useSelector } from "react-redux";
-import FormikTextField from "components/input/FormikTextField";
+import FormikTextField from "components/form/formField/FormikTextField";
 
 const PropertiesStep = () => {
   const { selectedCategory } = useSelector((state) => state.product);

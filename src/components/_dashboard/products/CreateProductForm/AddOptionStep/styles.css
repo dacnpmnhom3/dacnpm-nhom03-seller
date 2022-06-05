@@ -1,3 +1,9 @@
 .add-opt-step .MuiTableCell-root {
     text-transform: capitalize;
 }
+
+.add-opt-step .drag-drop-image {
+    width: 330px;
+    min-width: 100%;
+    text-align: center;
+}

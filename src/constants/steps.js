@@ -22,3 +22,5 @@ export const productDetail = [
     name: "images",
   },
 ];
+
+export const MAX_DETAIL_IMG_FILES = 10;

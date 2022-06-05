@@ -1,15 +1,20 @@
+import React from "react";
 import { Cascader } from "antd";
-import "./styles.css";
-import { useField, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCategory } from "redux/product";
+import { useField, Field, useFormikContext } from "formik";
 import { FormControl, FormHelperText } from "@mui/material";
 
+// Redux
+import { setSelectedCategory } from "redux/product";
+
+import "./styles.css";
+
 const FormikCascader = ({ ...props }) => {
-  const { label, options, ...rest } = props;
-  const [, meta, helpers] = useField(props);
   const dispatch = useDispatch();
+  const { values } = useFormikContext();
+  const [, meta, helpers] = useField(props);
   const { selectedCategory } = useSelector((state) => state.product);
+  const { label, options, ...rest } = props;
 
   return (
     <section className="formik-cascader">
@@ -25,7 +30,9 @@ const FormikCascader = ({ ...props }) => {
                   dispatch(setSelectedCategory(data[data.length - 1]));
                 }}
                 placeholder={label}
-                defaultValue={selectedCategory.label}
+                defaultValue={
+                  (values.category && selectedCategory.label) || null
+                }
                 {...rest}
               />
             </>

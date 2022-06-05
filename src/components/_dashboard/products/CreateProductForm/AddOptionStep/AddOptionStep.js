@@ -5,6 +5,7 @@ import { difference, remove } from "lodash";
 import {
   Stack,
   Table,
+  Paper,
   TableRow,
   StepLabel,
   TableCell,
@@ -15,15 +16,18 @@ import {
   TableContainer,
 } from "@mui/material";
 
-// Constants
-import { productDetail } from "constants/steps";
+// Utils
+import { combineValFrom2Arrs } from "utils/array";
 // Mocks
 import { COLORS, CAPACITY } from "_mocks_/products";
+// Constants
+import { MAX_DETAIL_IMG_FILES, productDetail } from "constants/steps";
 // Component
 import FormikRadioBtn from "components/button/FormikRadioBtn";
-import FormikTextField from "components/input/FormikTextField";
-import FormikMultiSelect from "components/select/FormikMultiSelect";
-import FormikDefaultCheckbox from "components/form/FormikDefaultCheckbox";
+import FormikTextField from "components/form/formField/FormikTextField";
+import FormikMultiSelect from "components/form/formField/FormikMultiSelect";
+import DragDropImageInput from "components/form/formField/DragDropImageInput";
+import FormikDefaultCheckbox from "components/form/formField/FormikDefaultCheckbox";
 
 import "./styles.css";
 
@@ -72,6 +76,44 @@ const AddOptionStep = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [haveManyOptions, values.variationAttr]);
 
+  const generateVariationField = (attributes) => {
+    if (attributes.length === 2) {
+      setFieldValue(
+        "variations",
+        combineValFrom2Arrs(attributes[0], attributes[1], (attr1, attr2) => {
+          return {
+            variation_attributes: [
+              { variation_name: attributes[0].name, value: attr1 },
+              { variation_name: attributes[1].name, value: attr2 },
+            ],
+            sku: "",
+            price: 0,
+            stock: 1,
+            images: [],
+          };
+        })
+      );
+    } else if (attributes.length === 1) {
+      setFieldValue(
+        "variations",
+        attributes[0].values.map((attr) => ({
+          variation_attributes: [
+            { variation_name: attributes[0].name, value: attr },
+          ],
+          sku: "",
+          price: 0,
+          stock: 1,
+          images: [],
+        }))
+      );
+    }
+  };
+
+  useEffect(() => {
+    generateVariationField(values.attributes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values.attributes]);
+
   return (
     <section className="add-opt-step">
       <StepLabel>Add option</StepLabel>
@@ -106,9 +148,9 @@ const AddOptionStep = ({
                     <Typography variant="h6" component="div">
                       List option
                     </Typography>
-                    <TableContainer>
+                    <TableContainer component={Paper}>
                       <Table
-                        sx={{ minWidth: 650 }}
+                        sx={{ minWidth: 1024 }}
                         aria-label="variation table"
                       >
                         <TableHead>
@@ -139,49 +181,83 @@ const AddOptionStep = ({
                         <TableBody>
                           {values.variationAttr.length === 2 &&
                             values.attributes.length === 2 &&
-                            values?.attributes?.[0].values?.map((attrName) =>
-                              values?.attributes?.[1].values?.map(
-                                (otherAttrName) => (
-                                  <TableRow
-                                    key={`${attrName}-${otherAttrName}`}
-                                  >
-                                    <TableCell>{attrName}</TableCell>
-                                    <TableCell>{otherAttrName}</TableCell>
-                                    {productDetail.map((detail) => (
-                                      <TableCell
-                                        key={detail.name}
-                                        align="right"
-                                      >
-                                        <FormikTextField
-                                          fullWidth
-                                          variant="standard"
-                                          name={`variations[0].${detail.name}`}
-                                        />
-                                      </TableCell>
-                                    ))}
-                                  </TableRow>
+                            values?.attributes?.[0].values?.map(
+                              (attrName, index) =>
+                                values?.attributes?.[1].values?.map(
+                                  (otherAttrName, otherIndex) => (
+                                    <TableRow
+                                      key={`${attrName}-${otherAttrName}`}
+                                    >
+                                      <TableCell>{attrName}</TableCell>
+                                      <TableCell>{otherAttrName}</TableCell>
+                                      {productDetail.map((detail) => (
+                                        <TableCell
+                                          align="right"
+                                          key={detail.name}
+                                        >
+                                          {detail.name === "images" ? (
+                                            <DragDropImageInput
+                                              maxFiles={MAX_DETAIL_IMG_FILES}
+                                              images={
+                                                values.variations[0].images
+                                              }
+                                              name={`variations[${
+                                                index *
+                                                  values?.attributes?.[1].values
+                                                    .length +
+                                                otherIndex
+                                              }].${detail.name}`}
+                                            />
+                                          ) : (
+                                            <FormikTextField
+                                              fullWidth
+                                              variant="standard"
+                                              name={`variations[${
+                                                index *
+                                                  values?.attributes?.[1].values
+                                                    .length +
+                                                otherIndex
+                                              }].${detail.name}`}
+                                            />
+                                          )}
+                                        </TableCell>
+                                      ))}
+                                    </TableRow>
+                                  )
                                 )
-                              )
                             )}
                           {values.variationAttr.length === 1 &&
                             values.attributes.map(
                               (element) =>
                                 element.name === values.variationAttr[0] &&
-                                element.values.map((attrName) => (
+                                element.values.map((attrName, index) => (
                                   <TableRow key={attrName}>
                                     <TableCell>{attrName}</TableCell>
-                                    {productDetail.map((detail) => (
-                                      <TableCell
-                                        key={detail.name}
-                                        align="right"
-                                      >
-                                        <FormikTextField
-                                          fullWidth
-                                          variant="standard"
-                                          name={`variations[0].${detail.name}`}
-                                        />
-                                      </TableCell>
-                                    ))}
+                                    {productDetail.map((detail) =>
+                                      detail.name === "images" ? (
+                                        <TableCell
+                                          align="right"
+                                          key={detail.name}
+                                        >
+                                          <DragDropImageInput
+                                            maxFiles={MAX_DETAIL_IMG_FILES}
+                                            images={values.variations[0].images}
+                                            name={`variations[${index}].${detail.name}`}
+                                          />
+                                        </TableCell>
+                                      ) : (
+                                        <TableCell
+                                          align="right"
+                                          key={detail.name}
+                                        >
+                                          <FormikTextField
+                                            fullWidth
+                                            variant="standard"
+                                            name={`variations[${index}].${detail.name}`}
+                                          />
+                                        </TableCell>
+                                      )
+                                    )}
                                   </TableRow>
                                 ))
                             )}
@@ -210,11 +286,20 @@ const AddOptionStep = ({
                         {detail.label}
                       </TableCell>
                       <TableCell align="right">
-                        <FormikTextField
-                          fullWidth
-                          variant="standard"
-                          name={`variations[0].${detail.name}`}
-                        />
+                        {detail.name === "images" ? (
+                          <DragDropImageInput
+                            maxFiles={MAX_DETAIL_IMG_FILES}
+                            images={values.variations[0].images}
+                            // label={thumbnailField.label}
+                            name={`variations[0].${detail.name}`}
+                          />
+                        ) : (
+                          <FormikTextField
+                            fullWidth
+                            variant="standard"
+                            name={`variations[0].${detail.name}`}
+                          />
+                        )}
                       </TableCell>
                     </TableRow>
                   ))}

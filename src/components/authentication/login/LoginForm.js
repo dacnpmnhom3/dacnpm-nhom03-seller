@@ -41,20 +41,31 @@ export default function LoginForm() {
       remember: true,
     },
     validationSchema: LoginSchema,
+    // onSubmit: () => {
     onSubmit: async () => {
-      try {
-        const res = await axiosClient.post("/api/seller/login", {
-          email: values.email,
-          password: values.password,
-        });
-        const { token, user } = res.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
-        dispatch(setToken(token));
-        dispatch(setUser(JSON.stringify(user)));
-        dispatch(setIsAuthenticated(true));
+      navigate("/dashboard/app", { replace: true });
 
-        navigate("/dashboard/app", { replace: true });
+      try {
+      // const res = await axiosClient.post("/api/seller/login", {
+      //   email: values.email,
+      //   password: values.password,
+      // });
+      const res={
+        data:{
+          token: "token",
+          user: {
+            photoURL: "",
+          },
+        },
+      };
+      const { token, user } = res.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch(setToken(token));
+      dispatch(setUser(JSON.stringify(user)));
+      dispatch(setIsAuthenticated(true));
+
+      navigate("/dashboard/app", { replace: true });
       } catch (error) {
         if (error.response.data.message) {
           dispatch(setErrorMsg(error.response.data.message));

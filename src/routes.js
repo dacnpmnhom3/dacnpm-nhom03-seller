@@ -18,6 +18,7 @@ import Product from "./pages/Product";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import CreateProduct from "./pages/CreateProduct";
+import ProductList from "./pages/ProductList";
 
 import RequireAuth from "./components/authentication/RequireAuth";
 import RequireSignOut from "./components/authentication/RequireSignOut";
@@ -43,12 +44,22 @@ export default function Router() {
         { path: "classes", element: <Class /> },
         { path: "profile", element: <Profile /> },
         { path: "products", element: <Product /> },
+        { path: "products/list", element: <ProductList /> },
         { path: "products/create-product", element: <CreateProduct /> },
         { path: "products/:productId", element: <ProductDetail /> },
         { path: "admins/create-admin", element: <CreateAdmin /> },
         { path: "admins/:adminId", element: <AdminDetail /> },
         { path: "users/:userId", element: <UserDetail /> },
         { path: "classes/:classId", element: <ClassDetail /> },
+        // {
+        //   path: 'product',
+        //   children: [
+        //     { element: <Navigate to="/dashboard/product/list" replace /> },
+        //     { path: 'list', element: <Product /> },
+        //     // { path: '/:productId', element: <ProductDetail /> },
+        //     { path: '/new', element: <CreateProduct /> },
+        //   ]
+        // },
       ],
     },
     {

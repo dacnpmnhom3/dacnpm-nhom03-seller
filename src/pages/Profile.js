@@ -21,9 +21,9 @@ export default function Profile() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get(`/api/admin/${parsedUser.id}`);
+      const res = await axiosClient.get(`/api/seller/${parsedUser.id}`);
 
-      setUserInfo({ ...res.data });
+      setUserInfo({ ...res.data.data });
     } catch (error) {
       if (error.response.data) {
         dispatch(setErrorMsg(error.response.data.message));

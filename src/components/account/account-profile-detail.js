@@ -32,7 +32,7 @@ export default function AccountProfileDetails({ userDetail, onChange }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await axiosClient.put(`/api/admin/${values.id}`, {
+      const res = await axiosClient.put(`/api/seller/${values.id}`, {
         fullName: values.fullName,
         phone: values.phone ? values.phone : null,
         address: values.address,

@@ -1,9 +1,8 @@
 // material
 import { styled } from "@mui/material/styles";
-import { Card, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 // components
 import Page from "../components/Page";
-import { MHidden } from "../components/@material-extend";
 import CreateProductForm from "components/_dashboard/products/CreateProductForm/CreateProductForm";
 // ----------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { useFormikContext } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { difference, remove } from "lodash";
 import {
   Stack,
@@ -18,8 +18,6 @@ import {
 
 // Utils
 import { combineValFrom2Arrs } from "utils/array";
-// Mocks
-import { COLORS, CAPACITY } from "_mocks_/products";
 // Constants
 import { MAX_DETAIL_IMG_FILES, productDetail } from "constants/steps";
 // Component
@@ -30,6 +28,8 @@ import DragDropImageInput from "components/form/formField/DragDropImageInput";
 import FormikDefaultCheckbox from "components/form/formField/FormikDefaultCheckbox";
 
 import "./styles.css";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 
 const AddOptionStep = ({
   typeField,
@@ -39,11 +39,29 @@ const AddOptionStep = ({
 }) => {
   const { values, setFieldValue } = useFormikContext();
   const [variationAttr, setVariationAttr] = useState([]);
+  const [recentVariations, setRecentVariations] = useState({});
   const { selectedCategory } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+
+  const fetchRecentVairations = async () => {
+    try {
+      const res = await axiosClient.get(
+        `/api/product/recent-variations/${values.category}`
+      );
+
+      if (res.data.data.isSuccess) {
+        dispatch(setSuccessMsg(res.data.data.message));
+        setRecentVariations(res.data.data.recentVariations);
+      }
+    } catch (error) {
+      if (error.response.data && error.response.data.message) {
+        dispatch(setErrorMsg(error.response.data.message));
+      } else console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (haveManyOptions === "1") {
-      // Call API to get variation attributes
       const unselectedAttr = difference(
         values.attributes.map((attr) => attr.name),
         values.variationAttr
@@ -59,22 +77,22 @@ const AddOptionStep = ({
         setFieldValue("attributes", []);
         setVariationAttr([]);
       } else {
-        setVariationAttr([]);
-        if (values.variationAttr.length === 2) {
-          if (values.variationAttr[0] === "color") {
-            setVariationAttr([COLORS, CAPACITY]);
-          } else {
-            setVariationAttr([CAPACITY, COLORS]);
-          }
-        } else if (values.variationAttr[0] === "color") {
-          setVariationAttr([COLORS]);
-        } else if (values.variationAttr[0] === "capacity") {
-          setVariationAttr([CAPACITY]);
-        }
+        const variations = values.variationAttr.map(
+          (variation) => recentVariations[variation]
+        );
+
+        setVariationAttr(variations);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [haveManyOptions, values.variationAttr]);
+
+  useEffect(() => {
+    if (haveManyOptions === "1") {
+      fetchRecentVairations();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [haveManyOptions]);
 
   const generateVariationField = (attributes) => {
     if (attributes.length === 2) {
@@ -199,25 +217,28 @@ const AddOptionStep = ({
                                             <DragDropImageInput
                                               maxFiles={MAX_DETAIL_IMG_FILES}
                                               images={
-                                                values.variations[0].images
+                                                values.variations?.[
+                                                  index *
+                                                  values?.attributes?.[1]
+                                                    .values.length +
+                                                  otherIndex
+                                                ]?.images
                                               }
-                                              name={`variations[${
-                                                index *
-                                                  values?.attributes?.[1].values
-                                                    .length +
+                                              name={`variations[${index *
+                                                values?.attributes?.[1].values
+                                                  .length +
                                                 otherIndex
-                                              }].${detail.name}`}
+                                                }].${detail.name}`}
                                             />
                                           ) : (
                                             <FormikTextField
                                               fullWidth
                                               variant="standard"
-                                              name={`variations[${
-                                                index *
-                                                  values?.attributes?.[1].values
-                                                    .length +
+                                              name={`variations[${index *
+                                                values?.attributes?.[1].values
+                                                  .length +
                                                 otherIndex
-                                              }].${detail.name}`}
+                                                }].${detail.name}`}
                                             />
                                           )}
                                         </TableCell>
@@ -241,7 +262,9 @@ const AddOptionStep = ({
                                         >
                                           <DragDropImageInput
                                             maxFiles={MAX_DETAIL_IMG_FILES}
-                                            images={values.variations[0].images}
+                                            images={
+                                              values.variations[0]?.images
+                                            }
                                             name={`variations[${index}].${detail.name}`}
                                           />
                                         </TableCell>
@@ -272,7 +295,7 @@ const AddOptionStep = ({
             <TableContainer>
               <Table sx={{ minWidth: 650 }} aria-label="variation table">
                 <TableBody>
-                  {productDetail.map((detail) => (
+                  {productDetail?.map((detail) => (
                     <TableRow
                       key={detail.name}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -289,7 +312,7 @@ const AddOptionStep = ({
                         {detail.name === "images" ? (
                           <DragDropImageInput
                             maxFiles={MAX_DETAIL_IMG_FILES}
-                            images={values.variations[0].images}
+                            images={values.variations[0]?.images}
                             // label={thumbnailField.label}
                             name={`variations[0].${detail.name}`}
                           />

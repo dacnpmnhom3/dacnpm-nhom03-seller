@@ -20,6 +20,7 @@ import GeneralInfoStep from "./GeneralInfoStep";
 import { addOptionValidationSchema } from "./AddOptionStep/validationSchema";
 import { propertiesValidationSchema } from "./PropertiesStep/validationSchema";
 import { generalInfoValidationSchema } from "./GeneralInfoStep/validationSchema";
+import axiosClient from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function CreateProductForm() {
@@ -82,13 +83,22 @@ export default function CreateProductForm() {
   const submitForm = useCallback(
     async (values, actions) => {
       try {
-        console.log(JSON.stringify(values, null, 2));
-        // const res = await axiosClient.post("/api/products/", values);
-        setTimeout(() => {
+        actions.setSubmitting(true);
+
+        const res = await axiosClient.post("/api/product", values, {
+          header: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (res.data.data.isSuccess) {
           actions.setSubmitting(false);
           navigate("/dashboard/products");
           dispatch(setSuccessMsg("Add New Product Successfully!"));
-        }, 1000);
+        } else {
+          actions.setSubmitting(false);
+          throw new Error("Something was wrong...");
+        }
       } catch (error) {
         if (error.response.data && error.response.data.message) {
           dispatch(setErrorMsg(error.response.data.message));
@@ -105,7 +115,6 @@ export default function CreateProductForm() {
       if (isLastStep) {
         submitForm(values, actions);
       } else {
-        console.log(values);
         generateVariationField(values.attributes);
         setActiveStep((prevState) => prevState + 1);
         actions.setTouched({});
@@ -121,7 +130,7 @@ export default function CreateProductForm() {
       initialValues={initialValues}
       validationSchema={validation[activeStep]}
       onSubmit={handleSubmit}
-      // enableReinitialize={true}
+    // enableReinitialize={true}
     >
       {({ isSubmitting, values }) => (
         <Stack spacing={3}>
@@ -163,7 +172,7 @@ export default function CreateProductForm() {
               </LoadingButton>
               <Button
                 sx={{ mt: 1, mr: 1 }}
-                disabled={activeStep === 0}
+                disabled={activeStep === 0 || isSubmitting}
                 onClick={handleBack}
               >
                 Back

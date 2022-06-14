@@ -18,7 +18,7 @@ const FormikMultiSelect = (props) => {
     <FormControl error={Boolean(meta.touched && meta.error)}>
       <FormLabel sx={{ textTransform: "capitalize" }}>{label}</FormLabel>
       <Select
-        mode="multiple"
+        mode="tags"
         allowClear
         style={{
           width: "100%",

@@ -15,6 +15,7 @@ export const productSlice = createSlice({
   reducers: {
     setSelectedCategory: (state, action) => {
       state.selectedCategory = action.payload;
+      console.log(action.payload);
     },
   },
 });

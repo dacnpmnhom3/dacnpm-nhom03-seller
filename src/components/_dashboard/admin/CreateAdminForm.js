@@ -7,9 +7,9 @@ import eyeOffFill from "@iconify/icons-eva/eye-off-fill";
 // material
 import { Stack, TextField, IconButton, InputAdornment } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
-import axiosClient from "src/api/axiosClient";
+import axiosClient from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function CreateAdminForm() {

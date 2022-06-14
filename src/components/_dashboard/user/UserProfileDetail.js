@@ -10,8 +10,8 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 
 export default function UserProfileDetail({ userDetail }) {

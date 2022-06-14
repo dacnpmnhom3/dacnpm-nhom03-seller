@@ -4,8 +4,8 @@ import AccountProfileDetails from "../components/account/account-profile-detail"
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.user);

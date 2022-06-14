@@ -18,6 +18,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "@fontsource/roboto/900.css";
+import "antd/dist/antd.min.css";
 
 ReactDOM.render(
   <Provider store={store}>

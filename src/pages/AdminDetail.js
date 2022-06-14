@@ -1,11 +1,11 @@
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import AccountProfile from "../components/account/account-profile";
-import AdminProfileDetails from "src/components/_dashboard/admin/AdminDetail";
+import AdminProfileDetails from "components/_dashboard/admin/AdminDetail";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 
 export default function AdminDetail() {
   const { adminId } = useParams();

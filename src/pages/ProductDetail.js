@@ -2,10 +2,10 @@ import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
-import ProductSummary from "src/components/_dashboard/products/ProductSummary";
-import ProductProfileDetail from "src/components/_dashboard/products/ProductDetail";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
+import ProductSummary from "components/_dashboard/products/ProductSummary";
+import ProductProfileDetail from "components/_dashboard/products/ProductDetail";
 
 export default function ProductDetail() {
   const { productId } = useParams();

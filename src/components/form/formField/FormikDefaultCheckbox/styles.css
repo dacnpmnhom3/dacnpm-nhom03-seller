@@ -1,0 +1,9 @@
+.formik-default-checkbox .MuiFormGroup-root {
+    margin-left: 10px;
+    width: fit-content;
+    text-transform: capitalize;
+}
+
+.formik-default-checkbox .MuiFormGroup-root input {
+    margin-right: 5px;
+}

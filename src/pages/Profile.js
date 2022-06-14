@@ -1,11 +1,13 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import AccountProfile from "../components/account/account-profile";
-import AccountProfileDetails from "../components/account/account-profile-detail";
+import {
+  Box, Container, Grid, Typography,
+} from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
+import AccountProfileDetails from "../components/account/account-profile-detail";
+import AccountProfile from "../components/account/account-profile";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.user);
@@ -34,34 +36,32 @@ export default function Profile() {
     fetchAPI();
   }, []);
   return (
-    <>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 8,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography sx={{ mb: 3 }} variant="h4">
-            Account
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item lg={4} md={6} xs={12}>
-              <AccountProfile
-                userDetail={userInfo}
-                image={"/static/mock-images/avatars/avatar_default.jpg"}
-              />
-            </Grid>
-            <Grid item lg={8} md={6} xs={12}>
-              <AccountProfileDetails
-                userDetail={userInfo}
-                onChange={setUserInfo}
-              />
-            </Grid>
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 8,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Typography sx={{ mb: 3 }} variant="h4">
+          Account
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item lg={4} md={6} xs={12}>
+            <AccountProfile
+              userDetail={userInfo}
+              image="/static/mock-images/avatars/avatar_default.jpg"
+            />
           </Grid>
-        </Container>
-      </Box>
-    </>
+          <Grid item lg={8} md={6} xs={12}>
+            <AccountProfileDetails
+              userDetail={userInfo}
+              onChange={setUserInfo}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

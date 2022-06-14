@@ -1,11 +1,13 @@
-import { Stack, TextField, Button, CircularProgress } from "@mui/material";
+import {
+  Stack, TextField, Button, CircularProgress,
+} from "@mui/material";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useDocumentTitle } from "../../../hooks/custom";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDocumentTitle } from "../../../hooks/custom";
 
 function RegisterSeller() {
   useDocumentTitle("Sign Up Page");
@@ -24,7 +26,7 @@ function RegisterSeller() {
     console.log(data);
     setIsLoading(true);
     try {
-      const res = await axiosClient.post("/api/seller", data);
+      await axiosClient.post("/api/seller/register", data);
       dispatch(setSuccessMsg("Register Successfully!"));
       navigate("/login", { replace: true });
     } catch (error) {
@@ -117,9 +119,9 @@ function RegisterSeller() {
           render={({ field }) => {
             const check = errors.password
               ? {
-                  helperText: "Password must be at least 6 characters",
-                  error: true,
-                }
+                helperText: "Password must be at least 6 characters",
+                error: true,
+              }
               : null;
             return (
               <TextField
@@ -142,10 +144,9 @@ function RegisterSeller() {
           defaultValue=""
           rules={{ required: true, minLength: 6 }}
           render={({ field }) => {
-            const check =
-              watch("password") !== watch("confirmPassword")
-                ? { helperText: "Password does not match." }
-                : null;
+            const check = watch("password") !== watch("confirmPassword")
+              ? { helperText: "Password does not match." }
+              : null;
 
             return (
               <TextField

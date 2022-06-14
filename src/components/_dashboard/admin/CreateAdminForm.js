@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-unresolved */
 import * as Yup from "yup";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
@@ -5,11 +7,13 @@ import { useFormik, Form, FormikProvider } from "formik";
 import eyeFill from "@iconify/icons-eva/eye-fill";
 import eyeOffFill from "@iconify/icons-eva/eye-off-fill";
 // material
-import { Stack, TextField, IconButton, InputAdornment } from "@mui/material";
+import {
+  Stack, TextField, IconButton, InputAdornment,
+} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
-import axiosClient from "src/api/axiosClient";
+import axiosClient from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function CreateAdminForm() {
@@ -56,8 +60,9 @@ export default function CreateAdminForm() {
     },
   });
 
-  const { errors, touched, values, handleSubmit, isSubmitting, getFieldProps } =
-    formik;
+  const {
+    errors, touched, values, handleSubmit, isSubmitting, getFieldProps,
+  } = formik;
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

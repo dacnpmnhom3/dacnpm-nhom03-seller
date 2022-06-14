@@ -15,10 +15,10 @@ import {
   IconButton,
 } from "@mui/material";
 // components
-import MenuPopover from "../../components/MenuPopover";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setIsAuthenticated } from "src/redux/user";
+import { setIsAuthenticated } from "redux/user";
+import MenuPopover from "../../components/MenuPopover";
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [

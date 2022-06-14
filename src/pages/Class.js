@@ -1,18 +1,20 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 
 import { Icon } from "@iconify/react";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
 // material
-import { Grid, Button, Container, Stack, Typography } from "@mui/material";
+import {
+  Grid, Button, Container, Stack, Typography,
+} from "@mui/material";
 // components
+import ClassItem from "components/_dashboard/class/ClassItem";
+import ClassSearch from "components/_dashboard/class/ClassSearch";
+import ClassSort from "components/_dashboard/class/ClassSort";
 import Page from "../components/Page";
-import ClassItem from "src/components/_dashboard/class/ClassItem";
-import ClassSearch from "src/components/_dashboard/class/ClassSearch";
-import ClassSort from "src/components/_dashboard/class/ClassSort";
 
 // ----------------------------------------------------------------------
 
@@ -45,11 +47,9 @@ export default function Class() {
 
   const handleSortByDate = (event) => {
     const tempClasses = [...classes];
-    tempClasses.sort((a, b) =>
-      event.target.value === "oldest"
-        ? new Date(a.createdAt) - new Date(b.createdAt)
-        : new Date(b.createdAt) - new Date(a.createdAt)
-    );
+    tempClasses.sort((a, b) => (event.target.value === "oldest"
+      ? new Date(a.createdAt) - new Date(b.createdAt)
+      : new Date(b.createdAt) - new Date(a.createdAt)));
     setSortOrder(event.target.value);
     setClasses(tempClasses);
   };
@@ -90,7 +90,7 @@ export default function Class() {
         </Stack>
 
         <Grid container spacing={3}>
-          {classes.map((post, index) => (
+          {classes.map((post) => (
             <Grid item key={post.id} lg={4} md={6} xs={12}>
               <ClassItem clss={post} />
             </Grid>

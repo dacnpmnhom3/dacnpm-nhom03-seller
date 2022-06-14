@@ -2,8 +2,8 @@ import { filter } from "lodash";
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
 // material
@@ -72,9 +72,8 @@ function applySortFilter(array, comparator, query) {
   if (query) {
     return filter(
       array,
-      (_user) =>
-        _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-        _user.email.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        || _user.email.toLowerCase().indexOf(query.toLowerCase()) !== -1,
     );
   }
   return stabilizedThis.map((el) => el[0]);
@@ -132,7 +131,7 @@ export default function User() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
     setSelected(newSelected);
@@ -151,13 +150,12 @@ export default function User() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - user.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - user.length) : 0;
 
   const filteredUsers = applySortFilter(
     user,
     getComparator(order, orderBy),
-    filterName
+    filterName,
   );
 
   const isUserNotFound = filteredUsers.length === 0;

@@ -1,11 +1,13 @@
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import {
+  Box, Container, Grid, Typography, Button,
+} from "@mui/material";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
-import ProductSummary from "src/components/_dashboard/products/ProductSummary";
-import ProductProfileDetail from "src/components/_dashboard/products/ProductDetail";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
+import ProductSummary from "components/_dashboard/products/ProductSummary";
+import ProductProfileDetail from "components/_dashboard/products/ProductDetail";
 
 export default function ProductDetail() {
   const { productId } = useParams();
@@ -35,37 +37,35 @@ export default function ProductDetail() {
   }, []);
 
   return (
-    <>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Button
-            to="./../"
-            size="large"
-            variant="contained"
-            component={RouterLink}
-          >
-            Back
-          </Button>
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 2,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Button
+          to="./../"
+          size="large"
+          variant="contained"
+          component={RouterLink}
+        >
+          Back
+        </Button>
 
-          <Typography sx={{ my: 3 }} variant="h4">
-            Product Detail
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item lg={4} md={6} xs={12}>
-              <ProductSummary productDetail={productInfo} />
-            </Grid>
-            <Grid item lg={8} md={6} xs={12}>
-              <ProductProfileDetail productDetail={productInfo} />
-            </Grid>
+        <Typography sx={{ my: 3 }} variant="h4">
+          Product Detail
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item lg={4} md={6} xs={12}>
+            <ProductSummary productDetail={productInfo} />
           </Grid>
-        </Container>
-      </Box>
-    </>
+          <Grid item lg={8} md={6} xs={12}>
+            <ProductProfileDetail productDetail={productInfo} />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

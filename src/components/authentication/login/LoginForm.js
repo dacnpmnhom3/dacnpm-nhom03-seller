@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as Yup from "yup";
 import { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -16,9 +17,8 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import axiosClient from "src/api/axiosClient";
-import { setIsAuthenticated, setToken, setUser } from "src/redux/user";
-import { setErrorMsg } from "src/redux/alert";
+import { setIsAuthenticated, setToken, setUser } from "redux/user";
+import { setErrorMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 // ----------------------------------------------------------------------
 
@@ -46,26 +46,26 @@ export default function LoginForm() {
       navigate("/dashboard/app", { replace: true });
 
       try {
-      // const res = await axiosClient.post("/api/seller/login", {
-      //   email: values.email,
-      //   password: values.password,
-      // });
-      const res={
-        data:{
-          token: "token",
-          user: {
-            photoURL: "",
+        // const res = await axiosClient.post("/api/seller/login", {
+        //   email: values.email,
+        //   password: values.password,
+        // });
+        const res = {
+          data: {
+            token: "token",
+            user: {
+              photoURL: "",
+            },
           },
-        },
-      };
-      const { token, user } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      dispatch(setToken(token));
-      dispatch(setUser(JSON.stringify(user)));
-      dispatch(setIsAuthenticated(true));
+        };
+        const { token, user } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(setToken(token));
+        dispatch(setUser(JSON.stringify(user)));
+        dispatch(setIsAuthenticated(true));
 
-      navigate("/dashboard/app", { replace: true });
+        navigate("/dashboard/app", { replace: true });
       } catch (error) {
         if (error.response.data.message) {
           dispatch(setErrorMsg(error.response.data.message));
@@ -74,8 +74,9 @@ export default function LoginForm() {
     },
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } =
-    formik;
+  const {
+    errors, touched, values, isSubmitting, handleSubmit, getFieldProps,
+  } = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -122,12 +123,12 @@ export default function LoginForm() {
           sx={{ my: 2 }}
         >
           <FormControlLabel
-            control={
+            control={(
               <Checkbox
                 {...getFieldProps("remember")}
                 checked={values.remember}
               />
-            }
+            )}
             label="Remember me"
           />
 

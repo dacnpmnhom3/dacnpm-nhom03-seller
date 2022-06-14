@@ -1,10 +1,9 @@
 // material
 import { styled } from "@mui/material/styles";
-import { Card, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 // components
+import CreateProductForm from "components/_dashboard/products/CreateProductForm/CreateProductForm";
 import Page from "../components/Page";
-import { MHidden } from "../components/@material-extend";
-import CreateProductForm from "src/components/_dashboard/products/CreateProductForm";
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)(({ theme }) => ({
@@ -13,20 +12,20 @@ const RootStyle = styled(Page)(({ theme }) => ({
   },
 }));
 
-const SectionStyle = styled(Card)(({ theme }) => ({
-  width: "100%",
-  maxWidth: 464,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  margin: theme.spacing(2, 0, 2, 2),
-}));
+// const SectionStyle = styled(Card)(({ theme }) => ({
+//   width: "100%",
+//   maxWidth: 464,
+//   display: "flex",
+//   flexDirection: "column",
+//   justifyContent: "center",
+//   margin: theme.spacing(2, 0, 2, 2),
+// }));
 
 const ContentStyle = styled("div")(({ theme }) => ({
-  maxWidth: 480,
+  // maxWidth: 480,
   margin: "auto",
   display: "flex",
-  minHeight: "100vh",
+  // minHeight: "100vh",
   flexDirection: "column",
   justifyContent: "center",
   padding: theme.spacing(12, 0),
@@ -36,8 +35,8 @@ const ContentStyle = styled("div")(({ theme }) => ({
 
 export default function CreateProduct() {
   return (
-    <RootStyle title="Create admin">
-      <MHidden width="mdDown">
+    <RootStyle title="Create product">
+      {/* <MHidden width="mdDown">
         <SectionStyle>
           <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
             Add new product
@@ -47,7 +46,7 @@ export default function CreateProduct() {
             src="/static/illustrations/illustration_register.png"
           />
         </SectionStyle>
-      </MHidden>
+      </MHidden> */}
 
       <Container>
         <ContentStyle>

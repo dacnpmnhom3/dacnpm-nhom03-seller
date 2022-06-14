@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 import {
   Avatar,
   Box,
-  Button,
   Card,
-  CardActions,
   CardContent,
   Divider,
   Typography,
 } from "@mui/material";
 
+// eslint-disable-next-line react/prop-types
 export default function ProductSummary({ productDetail }) {
   return (
     <Card>

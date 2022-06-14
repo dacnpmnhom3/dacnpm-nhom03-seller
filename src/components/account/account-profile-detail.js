@@ -9,10 +9,10 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import axiosClient from "src/api/axiosClient";
-import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
-import { setUser } from "src/redux/user";
+import { setUser } from "redux/user";
 
 export default function AccountProfileDetails({ userDetail, onChange }) {
   const [values, setValues] = useState(userDetail);

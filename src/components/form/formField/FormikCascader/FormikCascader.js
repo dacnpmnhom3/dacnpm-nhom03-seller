@@ -9,7 +9,7 @@ import { setSelectedCategory } from "redux/product";
 
 import "./styles.css";
 
-const FormikCascader = ({ ...props }) => {
+function FormikCascader({ ...props }) {
   const dispatch = useDispatch();
   const { values } = useFormikContext();
   const [, meta, helpers] = useField(props);
@@ -21,21 +21,20 @@ const FormikCascader = ({ ...props }) => {
       <FormControl error={Boolean(meta.touched && meta.error)} fullWidth>
         <Field name={rest.name}>
           {() => (
-            <>
-              <Cascader
-                size="large"
-                options={options}
-                onChange={(value, data) => {
-                  helpers.setValue(value[value?.length - 1]);
-                  dispatch(setSelectedCategory(data[data.length - 1]));
-                }}
-                placeholder={label}
-                defaultValue={
+            <Cascader
+              size="large"
+              options={options}
+              onChange={(value, data) => {
+                // eslint-disable-next-line no-unsafe-optional-chaining
+                helpers.setValue(value[value?.length - 1]);
+                dispatch(setSelectedCategory(data[data.length - 1]));
+              }}
+              placeholder={label}
+              defaultValue={
                   (values.category && selectedCategory.label) || null
                 }
-                {...rest}
-              />
-            </>
+              {...rest}
+            />
           )}
         </Field>
         {meta.touched && meta.error && (
@@ -44,6 +43,6 @@ const FormikCascader = ({ ...props }) => {
       </FormControl>
     </section>
   );
-};
+}
 
 export default FormikCascader;

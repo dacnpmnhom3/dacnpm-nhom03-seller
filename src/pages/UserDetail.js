@@ -1,4 +1,6 @@
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import {
+  Box, Container, Grid, Typography, Button,
+} from "@mui/material";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import UserProfileDetail from "components/_dashboard/user/UserProfileDetail";
 import UserProfile from "components/_dashboard/user/UserProfile";
@@ -40,36 +42,34 @@ export default function UserDetail() {
     fetchAPI();
   }, []);
   return (
-    <>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Button
-            to="./../"
-            size="large"
-            variant="contained"
-            component={RouterLink}
-          >
-            Back
-          </Button>
-          <Typography sx={{ my: 3 }} variant="h4">
-            User Detail
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item lg={4} md={6} xs={12}>
-              <UserProfile userDetail={userDetail} />
-            </Grid>
-            <Grid item lg={8} md={6} xs={12}>
-              <UserProfileDetail userDetail={userDetail} />
-            </Grid>
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 2,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Button
+          to="./../"
+          size="large"
+          variant="contained"
+          component={RouterLink}
+        >
+          Back
+        </Button>
+        <Typography sx={{ my: 3 }} variant="h4">
+          User Detail
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item lg={4} md={6} xs={12}>
+            <UserProfile userDetail={userDetail} />
           </Grid>
-        </Container>
-      </Box>
-    </>
+          <Grid item lg={8} md={6} xs={12}>
+            <UserProfileDetail userDetail={userDetail} />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

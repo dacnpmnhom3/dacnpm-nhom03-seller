@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState, memo } from "react";
 import { useDropzone } from "react-dropzone";
 import { useField } from "formik";
@@ -36,7 +37,7 @@ const img = {
   height: "100%",
 };
 
-const DragDropImageInput = ({ ...props }) => {
+function DragDropImageInput({ ...props }) {
   const { maxFiles, images, ...rest } = props;
   const [files, setFiles] = useState(images);
   const [, meta, helpers] = useField(props);
@@ -46,14 +47,12 @@ const DragDropImageInput = ({ ...props }) => {
     },
     onDrop: (acceptedFiles) => {
       setFiles(
-        acceptedFiles?.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
+        acceptedFiles?.map((file) => Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })),
       );
 
-      let t = [];
+      const t = [];
       acceptedFiles?.forEach((file) => {
         const reader = new FileReader();
         reader.addEventListener(
@@ -61,7 +60,7 @@ const DragDropImageInput = ({ ...props }) => {
           () => {
             t.push(reader.result);
           },
-          false
+          false,
         );
 
         reader.readAsDataURL(file);
@@ -69,7 +68,7 @@ const DragDropImageInput = ({ ...props }) => {
 
       helpers.setValue(t);
     },
-    maxFiles: maxFiles,
+    maxFiles,
   });
 
   const thumbs = files?.map((file, index) => (
@@ -88,10 +87,10 @@ const DragDropImageInput = ({ ...props }) => {
     </div>
   ));
 
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files?.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, [files]);
+  useEffect(
+    () => files?.forEach((file) => URL.revokeObjectURL(file.preview)),
+    [files],
+  );
 
   return (
     <section className="drag-drop-image">
@@ -102,11 +101,9 @@ const DragDropImageInput = ({ ...props }) => {
             {...rest}
             onChange={(val) => {
               setFiles(
-                val?.map((file) =>
-                  Object.assign(file, {
-                    preview: URL.createObjectURL(file),
-                  })
-                )
+                val?.map((file) => Object.assign(file, {
+                  preview: URL.createObjectURL(file),
+                })),
               );
             }}
           />
@@ -124,6 +121,6 @@ const DragDropImageInput = ({ ...props }) => {
       <aside style={thumbsContainer}>{thumbs}</aside>
     </section>
   );
-};
+}
 
 export default memo(DragDropImageInput);

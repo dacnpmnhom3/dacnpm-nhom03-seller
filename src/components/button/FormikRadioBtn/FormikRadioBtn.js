@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useField } from "formik";
 
-const FormikRadioBtn = ({ ...props }) => {
+function FormikRadioBtn({ ...props }) {
   const { label, options, ...rest } = props;
   const [field, meta] = useField(props);
 
@@ -31,6 +31,6 @@ const FormikRadioBtn = ({ ...props }) => {
       )}
     </FormControl>
   );
-};
+}
 
 export default FormikRadioBtn;

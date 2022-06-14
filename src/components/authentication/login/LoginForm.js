@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as Yup from "yup";
 import { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -16,7 +17,6 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import axiosClient from "api/axiosClient";
 import { setIsAuthenticated, setToken, setUser } from "redux/user";
 import { setErrorMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
@@ -41,7 +41,10 @@ export default function LoginForm() {
       remember: true,
     },
     validationSchema: LoginSchema,
+    // onSubmit: () => {
     onSubmit: async () => {
+      navigate("/dashboard/app", { replace: true });
+
       try {
         // const res = await axiosClient.post("/api/seller/login", {
         //   email: values.email,
@@ -56,7 +59,6 @@ export default function LoginForm() {
           },
         };
         const { token, user } = res.data;
-
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(setToken(token));
@@ -72,8 +74,9 @@ export default function LoginForm() {
     },
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } =
-    formik;
+  const {
+    errors, touched, values, isSubmitting, handleSubmit, getFieldProps,
+  } = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -120,12 +123,12 @@ export default function LoginForm() {
           sx={{ my: 2 }}
         >
           <FormControlLabel
-            control={
+            control={(
               <Checkbox
                 {...getFieldProps("remember")}
                 checked={values.remember}
               />
-            }
+            )}
             label="Remember me"
           />
 

@@ -1,6 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
 import React, { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { StepLabel, StepContent, Stack, Skeleton } from "@mui/material";
+import {
+  StepLabel, StepContent, Stack, Skeleton,
+} from "@mui/material";
 
 // Mocks
 // import { CATEGORIES } from "_mocks_/products";
@@ -11,13 +15,13 @@ import DragDropImageInput from "components/form/formField/DragDropImageInput";
 import axiosClient from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 
-const GeneralInfoStep = ({
+function GeneralInfoStep({
   nameField,
   descField,
   categoryField,
   thumbnailField,
   thumbnail,
-}) => {
+}) {
   const [loadingCategories, setLoadingCategories] = useState(false);
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
@@ -45,27 +49,24 @@ const GeneralInfoStep = ({
 
   useEffect(() => {
     fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const formatCategories = (categories) => {
-    return categories?.map((category) => {
-      if (category.sub_categories?.length > 0) {
-        return {
-          label: category.category_name,
-          value: category._id,
-          children: formatCategories(category.sub_categories),
-        };
-      } else {
-        return {
-          label: category.category_name,
-          value: category._id,
-          product_variations: category.product_variations,
-          properties: category.properties,
-        };
-      }
-    });
-  };
+  // eslint-disable-next-line no-shadow
+  const formatCategories = (categories) => categories?.map((category) => {
+    if (category.sub_categories?.length > 0) {
+      return {
+        label: category.category_name,
+        value: category._id,
+        children: formatCategories(category.sub_categories),
+      };
+    }
+    return {
+      label: category.category_name,
+      value: category._id,
+      product_variations: category.product_variations,
+      properties: category.properties,
+    };
+  });
 
   return (
     <>
@@ -77,11 +78,13 @@ const GeneralInfoStep = ({
             label={nameField.label}
             name={nameField.name}
           />
-          {loadingCategories ? <Skeleton height={56} /> : <FormikCascader
-            name={categoryField.name}
-            label={categoryField.label}
-            options={formatCategories(categories)}
-          />}
+          {loadingCategories ? <Skeleton height={56} /> : (
+            <FormikCascader
+              name={categoryField.name}
+              label={categoryField.label}
+              options={formatCategories(categories)}
+            />
+          )}
 
           <FormikTextField
             fullWidth
@@ -98,6 +101,6 @@ const GeneralInfoStep = ({
       </StepContent>
     </>
   );
-};
+}
 
 export default memo(GeneralInfoStep);

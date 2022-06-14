@@ -7,18 +7,17 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = "Bearer " + store.getState().user.token;
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer ${store.getState().user.token}`;
     return config;
   },
   (error) => {
     throw error;
-  }
+  },
 );
 
 axiosClient.interceptors.response.use(
-  (res) => {
-    return res;
-  },
+  (res) => res,
   (error) => {
     const { status } = error.response;
     if (status === 401) {
@@ -26,7 +25,7 @@ axiosClient.interceptors.response.use(
       window.location.href = "/login";
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosClient;

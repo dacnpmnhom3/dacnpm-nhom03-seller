@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import Select from "react-select";
 import { green, grey } from "@mui/material/colors";
@@ -25,65 +26,62 @@ const customStyles = {
   }),
 };
 
-const SelectGroup = ({
+function SelectGroup({
   placeholder,
   options,
   onChange,
   onBlur,
   error,
-  selectedValue,
-}) => {
+}) {
   return (
-    <>
-      <Select
-        options={[
-          {
-            label: ">>> nested group 3",
-            options: [
-              {
-                label: ">>> >>> nested group 3b",
-                options: [
-                  {
-                    label: "nested 1",
-                    value: 5,
-                  },
-                  {
-                    label: "nested 2",
-                    value: 6,
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            label: ">>> nested group 3",
-            options: [
-              {
-                label: ">>> >>> nested group 3b",
-                options: [
-                  {
-                    label: "nested 1",
-                    value: 5,
-                  },
-                  {
-                    label: "nested 2",
-                    value: 6,
-                  },
-                ],
-              },
-            ],
-          },
-        ]}
-        styles={customStyles}
-        classNamePrefix="react-select"
-        defaultValue={options[0].value}
-        placeholder={placeholder || "Select..."}
-        className={error ? "select-group--error" : ""}
-        onBlur={onBlur}
-        onChange={onChange}
-      />
-    </>
+    <Select
+      options={[
+        {
+          label: ">>> nested group 3",
+          options: [
+            {
+              label: ">>> >>> nested group 3b",
+              options: [
+                {
+                  label: "nested 1",
+                  value: 5,
+                },
+                {
+                  label: "nested 2",
+                  value: 6,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: ">>> nested group 3",
+          options: [
+            {
+              label: ">>> >>> nested group 3b",
+              options: [
+                {
+                  label: "nested 1",
+                  value: 5,
+                },
+                {
+                  label: "nested 2",
+                  value: 6,
+                },
+              ],
+            },
+          ],
+        },
+      ]}
+      styles={customStyles}
+      classNamePrefix="react-select"
+      defaultValue={options[0].value}
+      placeholder={placeholder || "Select..."}
+      className={error ? "select-group--error" : ""}
+      onBlur={onBlur}
+      onChange={onChange}
+    />
   );
-};
+}
 
 export default SelectGroup;

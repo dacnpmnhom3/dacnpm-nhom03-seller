@@ -127,7 +127,7 @@ export default function UserProfileDetail({ userDetail }) {
                 onChange={handleChange}
               >
                 <MenuItem value={false}>False</MenuItem>
-                <MenuItem value={true}>True</MenuItem>
+                <MenuItem value>True</MenuItem>
               </TextField>
             </Grid>
             <Grid item md={6} xs={12}>

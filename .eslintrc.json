@@ -12,10 +12,18 @@
   "rules": {
     "max-len": ["error", { "code": 100 }],
     "object-property-newline": "error",
-    "quotes": ["error", "double"],
+    "quotes": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "react/react-in-jsx-scope": "off", // suppress errors for missing 'import React' in files
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/jsx-props-no-spreading": "off" // allow jsx syntax in js files (for next.js project)
+    "react/jsx-props-no-spreading": "off", // allow jsx syntax in js files (for next.js project)
+    "linebreak-style": ["off","windows"],
+    "import/no-unresolved": "off",
+    "react/prop-types": "off",
+    "no-param-reassign": "off",
+    "camelcase": "off",
+    "import/prefer-default-export": "off",
+    "no-restricted-exports": "off",
+    "react/no-array-index-key" : "off"
   }
 }

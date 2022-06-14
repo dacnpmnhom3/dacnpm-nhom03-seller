@@ -6,11 +6,11 @@ import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
 //
+import { Provider } from "react-redux";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import reportWebVitals from "./reportWebVitals";
 
-import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 import "@fontsource/roboto/300.css";
@@ -28,7 +28,7 @@ ReactDOM.render(
       </BrowserRouter>
     </HelmetProvider>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 // If you want to enable client cache, register instead.

@@ -12,7 +12,7 @@ import {
 import FormikCascader from "components/form/formField/FormikCascader";
 import FormikTextField from "components/form/formField/FormikTextField";
 import DragDropImageInput from "components/form/formField/DragDropImageInput";
-import axiosClient from "api/axiosClient";
+import { productAxios } from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 
 function GeneralInfoStep({
@@ -29,7 +29,7 @@ function GeneralInfoStep({
   const fetchCategories = async () => {
     try {
       setLoadingCategories(true);
-      const res = await axiosClient.get("/api/category");
+      const res = await productAxios.get("/api/category");
 
       if (res.data.data.isSuccess) {
         dispatch(setSuccessMsg(res.data.data.message));

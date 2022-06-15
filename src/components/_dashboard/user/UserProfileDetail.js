@@ -10,7 +10,7 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 

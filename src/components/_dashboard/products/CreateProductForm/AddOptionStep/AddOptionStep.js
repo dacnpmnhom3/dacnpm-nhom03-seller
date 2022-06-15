@@ -31,7 +31,7 @@ import DragDropImageInput from "components/form/formField/DragDropImageInput";
 import FormikDefaultCheckbox from "components/form/formField/FormikDefaultCheckbox";
 
 import "./styles.css";
-import axiosClient from "api/axiosClient";
+import { productAxios } from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 
 function AddOptionStep({
@@ -48,7 +48,7 @@ function AddOptionStep({
 
   const fetchRecentVairations = async () => {
     try {
-      const res = await axiosClient.get(
+      const res = await productAxios.get(
         `/api/product/recent-variations/${values.category}`,
       );
 

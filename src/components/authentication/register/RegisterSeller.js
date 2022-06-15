@@ -3,7 +3,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

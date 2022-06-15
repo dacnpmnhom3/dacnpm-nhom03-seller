@@ -9,7 +9,7 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 import { setUser } from "redux/user";

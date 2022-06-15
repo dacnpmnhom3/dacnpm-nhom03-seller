@@ -13,7 +13,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function CreateAdminForm() {

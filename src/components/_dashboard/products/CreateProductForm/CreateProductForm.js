@@ -13,7 +13,7 @@ import { setErrorMsg, setSuccessMsg } from "redux/alert";
 // Mocks
 import { CATEGORIES } from "_mocks_/products";
 
-import axiosClient from "api/axiosClient";
+import { productAxios } from "api/axiosClient";
 import {
   initialValues,
   createProductFormModel,
@@ -89,7 +89,7 @@ export default function CreateProductForm() {
       try {
         actions.setSubmitting(true);
 
-        const res = await axiosClient.post("/api/product", values, {
+        const res = await productAxios.post("/api/product", values, {
           header: {
             "Content-Type": "multipart/form-data",
           },

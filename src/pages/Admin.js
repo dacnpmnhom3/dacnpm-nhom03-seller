@@ -2,7 +2,7 @@ import { filter, sample } from "lodash";
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";

@@ -45,18 +45,18 @@ export default function LoginForm() {
       navigate("/dashboard/app", { replace: true });
 
       try {
-        // const res = await axiosClient.post("/api/seller/login", {
-        //   email: values.email,
-        //   password: values.password,
-        // });
-        const res = {
-          data: {
-            token: "token",
-            user: {
-              photoURL: "",
-            },
-          },
-        };
+        const res = await axiosClient.post("/api/seller/login", {
+          email: values.email,
+          password: values.password,
+        });
+//         const res = {
+//           data: {
+//             token: "token",
+//             user: {
+//               photoURL: "",
+//             },
+//           },
+//         };
         const { token, user } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));

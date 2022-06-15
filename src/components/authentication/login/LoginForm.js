@@ -19,6 +19,7 @@ import { LoadingButton } from "@mui/lab";
 import { setIsAuthenticated, setToken, setUser } from "redux/user";
 import { setErrorMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
+import axiosClient from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
@@ -42,21 +43,13 @@ export default function LoginForm() {
     validationSchema: LoginSchema,
     // onSubmit: () => {
     onSubmit: async () => {
-      navigate("/dashboard/app", { replace: true });
+      //navigate("/dashboard/app", { replace: true });
 
       try {
         const res = await axiosClient.post("/api/seller/login", {
           email: values.email,
           password: values.password,
         });
-//         const res = {
-//           data: {
-//             token: "token",
-//             user: {
-//               photoURL: "",
-//             },
-//           },
-//         };
         const { token, user } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
@@ -73,9 +66,8 @@ export default function LoginForm() {
     },
   });
 
-  const {
-    errors, touched, values, isSubmitting, handleSubmit, getFieldProps,
-  } = formik;
+  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } =
+    formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -122,12 +114,12 @@ export default function LoginForm() {
           sx={{ my: 2 }}
         >
           <FormControlLabel
-            control={(
+            control={
               <Checkbox
                 {...getFieldProps("remember")}
                 checked={values.remember}
               />
-            )}
+            }
             label="Remember me"
           />
 

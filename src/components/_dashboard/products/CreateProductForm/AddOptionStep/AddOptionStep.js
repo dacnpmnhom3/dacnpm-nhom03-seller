@@ -98,8 +98,10 @@ function AddOptionStep({
         "variations",
         combineValFrom2Arrs(attributes[0], attributes[1], (attr1, attr2) => ({
           variation_attributes: [
-            { variation_name: attributes[0].name, value: attr1 },
-            { variation_name: attributes[1].name, value: attr2 },
+            { variation_name: attributes[0].name,
+value: attr1 },
+            { variation_name: attributes[1].name,
+value: attr2 },
           ],
           sku: "",
           price: 0,
@@ -112,7 +114,8 @@ function AddOptionStep({
         "variations",
         attributes[0].values.map((attr) => ({
           variation_attributes: [
-            { variation_name: attributes[0].name, value: attr },
+            { variation_name: attributes[0].name,
+value: attr },
           ],
           sku: "",
           price: 0,

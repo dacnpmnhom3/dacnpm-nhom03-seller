@@ -19,8 +19,10 @@ import Page from "../components/Page";
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
-  { value: "latest", label: "Latest" },
-  { value: "oldest", label: "Oldest" },
+  { value: "latest",
+label: "Latest" },
+  { value: "oldest",
+label: "Oldest" },
 ];
 
 // ----------------------------------------------------------------------

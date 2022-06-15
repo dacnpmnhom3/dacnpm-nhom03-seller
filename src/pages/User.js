@@ -37,11 +37,21 @@ import {
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "student_id", label: "Student ID", alignRight: false },
-  { id: "email", label: "Email", alignRight: false },
-  { id: "isLock", label: "Status", alignRight: false },
-  { id: "createdAt", label: "Created At", alignRight: false },
+  { id: "name",
+label: "Name",
+alignRight: false },
+  { id: "student_id",
+label: "Student ID",
+alignRight: false },
+  { id: "email",
+label: "Email",
+alignRight: false },
+  { id: "isLock",
+label: "Status",
+alignRight: false },
+  { id: "createdAt",
+label: "Created At",
+alignRight: false },
   { id: "" },
 ];
 // ----------------------------------------------------------------------

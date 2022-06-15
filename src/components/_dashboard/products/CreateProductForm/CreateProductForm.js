@@ -168,12 +168,14 @@ export default function CreateProductForm() {
                 loadingIndicator="Submitting..."
                 type="submit"
                 variant="contained"
-                sx={{ mt: 1, mr: 1 }}
+                sx={{ mt: 1,
+mr: 1 }}
               >
                 {isLastStep ? "Add product" : "Continue"}
               </LoadingButton>
               <Button
-                sx={{ mt: 1, mr: 1 }}
+                sx={{ mt: 1,
+mr: 1 }}
                 disabled={activeStep === 0 || isSubmitting}
                 onClick={handleBack}
               >

@@ -5,15 +5,12 @@ import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 //
 import Login from "./pages/Login";
 import DashboardApp from "./pages/DashboardApp";
-import Admin from "./pages/Admin";
 import User from "./pages/User";
-import Class from "./pages/Class";
+import Order from "./pages/Order";
 import NotFound from "./pages/Page404";
-import CreateAdmin from "./pages/CreateAdmin";
 import Profile from "./pages/Profile";
 import UserDetail from "./pages/UserDetail";
-import ClassDetail from "./pages/ClassDetail";
-import AdminDetail from "./pages/AdminDetail";
+import OrderDetail from "./pages/OrderDetail";
 import Product from "./pages/Product";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
@@ -39,70 +36,28 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" replace /> },
         {
           path: "app",
-          element: <DashboardApp />
+          element: <DashboardApp />,
         },
-        {
-          path: "admins",
-          element: <Admin />
-        },
-        {
-          path: "users",
-          element: <User />
-        },
-        {
-          path: "sellers",
-          element: <User />
-        },
-        {
-          path: "classes",
-          element: <Class />
-        },
-        {
-          path: "profile",
-          element: <Profile />
-        },
-        // { path: "products", element: <Product /> },
-        {
-          path: "products",
-          element: <ProductList />
-        },
-        {
-          path: "products/list",
-          element: <ProductList />
-        },
-        {
-          path: "products/create-product",
-          element: <CreateProduct />
-        },
-        {
-          path: "products/:productId",
-          element: <ProductDetail />
-        },
-        {
-          path: "admins/create-admin",
-          element: <CreateAdmin />
-        },
-        {
-          path: "admins/:adminId",
-          element: <AdminDetail />
-        },
-        {
-          path: "users/:userId",
-          element: <UserDetail />
-        },
-        {
-          path: "classes/:classId",
-          element: <ClassDetail />
-        },
-        // {
-        //   path: 'product',
-        //   children: [
-        //     { element: <Navigate to="/dashboard/product/list" replace /> },
-        //     { path: 'list', element: <Product /> },
-        //     // { path: '/:productId', element: <ProductDetail /> },
-        //     { path: '/new', element: <CreateProduct /> },
-        //   ]
-        // },
+        { path: "orders",
+element: <Order /> },
+        { path: "analytics",
+element: <DashboardApp /> },
+        { path: "users",
+element: <User /> },
+        { path: "profile",
+element: <Profile /> },
+        { path: "products",
+element: <ProductList /> },
+        { path: "products/list",
+element: <ProductList /> },
+        { path: "products/create-product",
+element: <CreateProduct /> },
+        { path: "products/:productId",
+element: <ProductDetail /> },
+        { path: "users/:userId",
+element: <UserDetail /> },
+        { path: "orders/:orderId",
+element: <OrderDetail /> },
       ],
     },
     {
@@ -135,17 +90,17 @@ export default function Router() {
         },
         {
           path: "404",
-          element: <NotFound />
+          element: <NotFound />,
         },
         {
           path: "*",
-          element: <Navigate to="/404" />
+          element: <Navigate to="/404" />,
         },
       ],
     },
     {
       path: "*",
-      element: <Navigate to="/404" replace />
+      element: <Navigate to="/404" replace />,
     },
   ]);
 }

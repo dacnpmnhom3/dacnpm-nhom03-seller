@@ -34,7 +34,8 @@ export default function ProductProfileDetail({ productDetail }) {
   const handleSubmit = async (event) => {
     try {
       const obj = event.target.id === "accept"
-        ? { isVerified: "true", isPublished: "true" }
+        ? { isVerified: "true",
+isPublished: "true" }
         : { isVerified: "true" };
       const res = await axiosClient.put(`/api/products/${values.id}`, obj);
 

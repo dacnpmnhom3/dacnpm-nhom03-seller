@@ -46,7 +46,8 @@ function RegisterSeller() {
           name="email"
           control={control}
           defaultValue=""
-          rules={{ required: true, pattern: /^\S+@\S+$/i }}
+          rules={{ required: true,
+pattern: /^\S+@\S+$/i }}
           render={({ field }) => {
             const check = errors.email
               ? { helperText: "Please enter a valid email" }
@@ -92,7 +93,8 @@ function RegisterSeller() {
           name="phone"
           control={control}
           defaultValue=""
-          rules={{ required: true, pattern: /^[0-9]{10,11}$/ }}
+          rules={{ required: true,
+pattern: /^[0-9]{10,11}$/ }}
           render={({ field }) => {
             const check = errors.phone
               ? { helperText: "Please enter a valid phone" }
@@ -115,7 +117,8 @@ function RegisterSeller() {
           name="password"
           control={control}
           defaultValue=""
-          rules={{ required: true, minLength: 6 }}
+          rules={{ required: true,
+minLength: 6 }}
           render={({ field }) => {
             const check = errors.password
               ? {
@@ -142,7 +145,8 @@ function RegisterSeller() {
           name="confirmPassword"
           control={control}
           defaultValue=""
-          rules={{ required: true, minLength: 6 }}
+          rules={{ required: true,
+minLength: 6 }}
           render={({ field }) => {
             const check = watch("password") !== watch("confirmPassword")
               ? { helperText: "Password does not match." }

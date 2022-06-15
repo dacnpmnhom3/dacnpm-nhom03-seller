@@ -18,7 +18,9 @@ import Page from "../components/Page";
 
 export default function DashboardApp() {
   const dispatch = useDispatch();
-  const [report, setReport] = useState({ admin: 0, user: 0, class: 0 });
+  const [report, setReport] = useState({ admin: 0,
+user: 0,
+class: 0 });
 
   async function fetchAPI() {
     try {

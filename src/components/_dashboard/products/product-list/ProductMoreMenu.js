@@ -33,10 +33,13 @@ export default function ProductMoreMenu({ onDelete, productName }) {
         anchorEl={ref.current}
         onClose={() => setIsOpen(false)}
         PaperProps={{
-          sx: { width: 200, maxWidth: '100%' }
+          sx: { width: 200,
+maxWidth: '100%' }
         }}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: 'top',
+horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top',
+horizontal: 'right' }}
       >
         <MenuItem onClick={onDelete} sx={{ color: 'text.secondary' }}>
           <ListItemIcon>

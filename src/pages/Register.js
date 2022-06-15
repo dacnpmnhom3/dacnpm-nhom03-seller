@@ -57,7 +57,9 @@ export default function Register() {
 
       <MHidden width="mdDown">
         <SectionStyle>
-          <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+          <Typography variant="h3" sx={{ px: 5,
+mt: 10,
+mb: 5 }}>
             Manage the job more effectively with Minimal
           </Typography>
           <img
@@ -81,7 +83,8 @@ export default function Register() {
           <Typography
             variant="body2"
             align="center"
-            sx={{ color: "text.secondary", mt: 3 }}
+            sx={{ color: "text.secondary",
+mt: 3 }}
           >
             By registering, I agree to Minimal&nbsp;
             <Link underline="always" sx={{ color: "text.primary" }} href="#">
@@ -95,7 +98,8 @@ export default function Register() {
           </Typography>
 
           <MHidden width="smUp">
-            <Typography variant="subtitle2" sx={{ mt: 3, textAlign: "center" }}>
+            <Typography variant="subtitle2" sx={{ mt: 3,
+textAlign: "center" }}>
               Already have an account?&nbsp;
               <Link to="/login" component={RouterLink}>
                 Login

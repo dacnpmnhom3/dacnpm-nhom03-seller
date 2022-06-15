@@ -2,7 +2,7 @@ import { filter } from "lodash";
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
@@ -37,11 +37,21 @@ import {
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "student_id", label: "Student ID", alignRight: false },
-  { id: "email", label: "Email", alignRight: false },
-  { id: "isLock", label: "Status", alignRight: false },
-  { id: "createdAt", label: "Created At", alignRight: false },
+  { id: "name",
+label: "Name",
+alignRight: false },
+  { id: "student_id",
+label: "Student ID",
+alignRight: false },
+  { id: "email",
+label: "Email",
+alignRight: false },
+  { id: "isLock",
+label: "Status",
+alignRight: false },
+  { id: "createdAt",
+label: "Created At",
+alignRight: false },
   { id: "" },
 ];
 // ----------------------------------------------------------------------

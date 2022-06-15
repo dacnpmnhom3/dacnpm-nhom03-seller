@@ -5,7 +5,7 @@ import { useParams, Link as RouterLink } from "react-router-dom";
 import AdminProfileDetails from "components/_dashboard/admin/AdminDetail";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 import AccountProfile from "../components/account/account-profile";
 

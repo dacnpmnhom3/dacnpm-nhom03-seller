@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 
 import { Icon } from "@iconify/react";
@@ -19,8 +19,10 @@ import Page from "../components/Page";
 // ----------------------------------------------------------------------
 
 const SORT_OPTIONS = [
-  { value: "latest", label: "Latest" },
-  { value: "oldest", label: "Oldest" },
+  { value: "latest",
+label: "Latest" },
+  { value: "oldest",
+label: "Oldest" },
 ];
 
 // ----------------------------------------------------------------------

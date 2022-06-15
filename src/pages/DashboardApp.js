@@ -5,7 +5,7 @@ import {
 // components
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 import {
   UserCard,
@@ -18,7 +18,9 @@ import Page from "../components/Page";
 
 export default function DashboardApp() {
   const dispatch = useDispatch();
-  const [report, setReport] = useState({ admin: 0, user: 0, class: 0 });
+  const [report, setReport] = useState({ admin: 0,
+user: 0,
+class: 0 });
 
   async function fetchAPI() {
     try {

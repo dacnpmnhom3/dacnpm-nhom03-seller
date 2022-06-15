@@ -10,7 +10,7 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import axiosClient from "api/axiosClient";
+import { productAxios } from "api/axiosClient";
 import { useDispatch } from "react-redux";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 
@@ -34,9 +34,10 @@ export default function ProductProfileDetail({ productDetail }) {
   const handleSubmit = async (event) => {
     try {
       const obj = event.target.id === "accept"
-        ? { isVerified: "true", isPublished: "true" }
+        ? { isVerified: "true",
+isPublished: "true" }
         : { isVerified: "true" };
-      const res = await axiosClient.put(`/api/products/${values.id}`, obj);
+      const res = await productAxios.put(`/api/product/${values.id}`, obj);
 
       navigate(-1);
       dispatch(setSuccessMsg(res.data.message));

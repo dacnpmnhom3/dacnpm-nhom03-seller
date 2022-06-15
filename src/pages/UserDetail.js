@@ -7,7 +7,7 @@ import UserProfile from "components/_dashboard/user/UserProfile";
 
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
+import { axiosClient } from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 
 export default function UserDetail() {

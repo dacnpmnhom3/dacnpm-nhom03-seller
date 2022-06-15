@@ -1,6 +1,5 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react/prop-types */
-/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect, memo } from "react";
 import { useFormikContext } from "formik";
 import { useDispatch, useSelector } from "react-redux";

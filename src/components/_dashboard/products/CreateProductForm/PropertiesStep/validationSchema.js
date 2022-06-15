@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import * as Yup from "yup";
 
 import { createProductFormModel } from "../createProductFormModel";

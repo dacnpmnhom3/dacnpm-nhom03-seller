@@ -38,11 +38,31 @@ import {
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "fullName", label: "Name", alignRight: false },
-  { id: "email", label: "Email", alignRight: false },
-  { id: "address", label: "Address", alignRight: false },
-  { id: "phone", label: "Phone", alignRight: false },
-  { id: "createdAt", label: "Created At", alignRight: false },
+  {
+    id: "fullName",
+    label: "Name",
+    alignRight: false
+  },
+  {
+    id: "email",
+    label: "Email",
+    alignRight: false
+  },
+  {
+    id: "address",
+    label: "Address",
+    alignRight: false
+  },
+  {
+    id: "phone",
+    label: "Phone",
+    alignRight: false
+  },
+  {
+    id: "createdAt",
+    label: "Created At",
+    alignRight: false
+  },
   { id: "" },
 ];
 
@@ -74,8 +94,9 @@ function applySortFilter(array, comparator, query) {
   if (query) {
     return filter(
       array,
-      (_user) => _user.fullName.toLowerCase().indexOf(query.toLowerCase()) !== -1
-        || _user.email.toLowerCase().indexOf(query.toLowerCase()) !== -1,
+      (_user) =>
+        _user.fullName.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _user.email.toLowerCase().indexOf(query.toLowerCase()) !== -1
     );
   }
   return stabilizedThis.map((el) => el[0]);
@@ -145,7 +166,7 @@ export default function User() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
     setSelected(newSelected);
@@ -164,12 +185,13 @@ export default function User() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - admin.length) : 0;
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - admin.length) : 0;
 
   const filteredUsers = applySortFilter(
     admin,
     getComparator(order, orderBy),
-    filterName,
+    filterName
   );
 
   const isUserNotFound = filteredUsers.length === 0;

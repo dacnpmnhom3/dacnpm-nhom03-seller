@@ -58,12 +58,32 @@ import {
 // }));
 
 const TABLE_HEAD = [
-  { id: "name", label: "Product", alignRight: false },
-  { id: "description", label: "Description", alignRight: false },
-  { id: "properties", label: "Properties", alignRight: false },
-  { id: "variations", label: "Variations", alignRight: false },
+  {
+    id: "name",
+    label: "Product",
+    alignRight: false
+  },
+  {
+    id: "description",
+    label: "Description",
+    alignRight: false
+  },
+  {
+    id: "properties",
+    label: "Properties",
+    alignRight: false
+  },
+  {
+    id: "variations",
+    label: "Variations",
+    alignRight: false
+  },
   // { id: 'price', label: 'Price', alignRight: true },
-  { id: "createdAt", label: "Create at", alignRight: false },
+  {
+    id: "createdAt",
+    label: "Create at",
+    alignRight: false
+  },
   { id: "" },
 ];
 
@@ -197,7 +217,10 @@ export default function ProductList() {
         <HeaderBreadcrumbs
           heading="Product List"
           links={[
-            { name: "Dashboard", href: PATH_DASHBOARD.root },
+            {
+              name: "Dashboard",
+              href: PATH_DASHBOARD.root
+            },
             {
               name: "E-Commerce",
               href: PATH_DASHBOARD.eCommerce.root,
@@ -294,8 +317,8 @@ export default function ProductList() {
                                 <b>{item.property_name}</b>
                                 :
                                 {" "}
-                                {item.property_value.map((j) => (
-                                  <li>
+                                {item.property_value.map((j, index) => (
+                                  <li key={index}>
                                     {j.sub_property}
                                     {' '}
                                     -
@@ -310,8 +333,8 @@ export default function ProductList() {
                           <TableCell style={{ minWidth: 150 }}>
                             {variations.map((item, i) => (
                               <ul key={i}>
-                                {item.variation_attributes.map((j) => (
-                                  <b>
+                                {item.variation_attributes.map((j, index) => (
+                                  <b key={index}>
                                     {j.variation_name.toUpperCase()}
                                     {' '}
                                     -

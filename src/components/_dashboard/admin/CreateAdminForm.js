@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-/* eslint-disable import/no-unresolved */
 import * as Yup from "yup";
 import { useState } from "react";
 import { Icon } from "@iconify/react";

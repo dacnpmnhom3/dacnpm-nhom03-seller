@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link as RouterLink } from "react-router-dom";
 // material
 import { styled } from "@mui/material/styles";

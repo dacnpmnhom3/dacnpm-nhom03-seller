@@ -37,21 +37,63 @@ export default function Router() {
       ),
       children: [
         { element: <Navigate to="/dashboard/app" replace /> },
-        { path: "app", element: <DashboardApp /> },
-        { path: "admins", element: <Admin /> },
-        { path: "users", element: <User /> },
-        { path: "sellers", element: <User /> },
-        { path: "classes", element: <Class /> },
-        { path: "profile", element: <Profile /> },
+        {
+          path: "app",
+          element: <DashboardApp />
+        },
+        {
+          path: "admins",
+          element: <Admin />
+        },
+        {
+          path: "users",
+          element: <User />
+        },
+        {
+          path: "sellers",
+          element: <User />
+        },
+        {
+          path: "classes",
+          element: <Class />
+        },
+        {
+          path: "profile",
+          element: <Profile />
+        },
         // { path: "products", element: <Product /> },
-        { path: "products", element: <ProductList /> },
-        { path: "products/list", element: <ProductList /> },
-        { path: "products/create-product", element: <CreateProduct /> },
-        { path: "products/:productId", element: <ProductDetail /> },
-        { path: "admins/create-admin", element: <CreateAdmin /> },
-        { path: "admins/:adminId", element: <AdminDetail /> },
-        { path: "users/:userId", element: <UserDetail /> },
-        { path: "classes/:classId", element: <ClassDetail /> },
+        {
+          path: "products",
+          element: <ProductList />
+        },
+        {
+          path: "products/list",
+          element: <ProductList />
+        },
+        {
+          path: "products/create-product",
+          element: <CreateProduct />
+        },
+        {
+          path: "products/:productId",
+          element: <ProductDetail />
+        },
+        {
+          path: "admins/create-admin",
+          element: <CreateAdmin />
+        },
+        {
+          path: "admins/:adminId",
+          element: <AdminDetail />
+        },
+        {
+          path: "users/:userId",
+          element: <UserDetail />
+        },
+        {
+          path: "classes/:classId",
+          element: <ClassDetail />
+        },
         // {
         //   path: 'product',
         //   children: [
@@ -91,10 +133,19 @@ export default function Router() {
             </RequireSignOut>
           ),
         },
-        { path: "404", element: <NotFound /> },
-        { path: "*", element: <Navigate to="/404" /> },
+        {
+          path: "404",
+          element: <NotFound />
+        },
+        {
+          path: "*",
+          element: <Navigate to="/404" />
+        },
       ],
     },
-    { path: "*", element: <Navigate to="/404" replace /> },
+    {
+      path: "*",
+      element: <Navigate to="/404" replace />
+    },
   ]);
 }

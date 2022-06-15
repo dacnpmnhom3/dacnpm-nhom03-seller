@@ -3,15 +3,15 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": ["plugin:react/recommended"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": ["react"],
   "rules": {
-    "max-len": ["error", { "code": 100 }],
-    "object-property-newline": "error",
+    "max-len": ["error", { "code": 120 }],
+    "object-property-newline": 1,
     "quotes": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "react/react-in-jsx-scope": "off", // suppress errors for missing 'import React' in files
@@ -24,6 +24,8 @@
     "camelcase": "off",
     "import/prefer-default-export": "off",
     "no-restricted-exports": "off",
-    "react/no-array-index-key" : "off"
+    "react/no-array-index-key" : "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/display-name": "off"
   }
 }

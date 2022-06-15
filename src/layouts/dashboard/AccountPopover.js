@@ -15,10 +15,10 @@ import {
   IconButton,
 } from "@mui/material";
 // components
-import MenuPopover from "../../components/MenuPopover";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setIsAuthenticated } from "redux/user";
+import MenuPopover from "../../components/MenuPopover";
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
@@ -89,7 +89,8 @@ export default function AccountPopover() {
         anchorEl={anchorRef.current}
         sx={{ width: 220 }}
       >
-        <Box sx={{ my: 1.5, px: 2.5 }}>
+        <Box sx={{ my: 1.5,
+px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
             {parsedUser.fullName}
           </Typography>
@@ -106,7 +107,9 @@ export default function AccountPopover() {
             to={option.linkTo}
             component={RouterLink}
             onClick={handleClose}
-            sx={{ typography: "body2", py: 1, px: 2.5 }}
+            sx={{ typography: "body2",
+py: 1,
+px: 2.5 }}
           >
             <Box
               component={Icon}
@@ -122,7 +125,8 @@ export default function AccountPopover() {
           </MenuItem>
         ))}
 
-        <Box sx={{ p: 2, pt: 1.5 }}>
+        <Box sx={{ p: 2,
+pt: 1.5 }}>
           <Button
             fullWidth
             color="inherit"

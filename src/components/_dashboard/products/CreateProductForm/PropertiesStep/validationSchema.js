@@ -7,5 +7,6 @@ const {
 } = createProductFormModel;
 
 export const propertiesValidationSchema = Yup.object().shape({
+  // eslint-disable-next-line react/forbid-prop-types
   [properties.name]: Yup.object(),
 });

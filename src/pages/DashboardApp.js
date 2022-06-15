@@ -1,22 +1,26 @@
 // material
-import { Box, Grid, Container, Typography } from "@mui/material";
+import {
+  Box, Grid, Container, Typography,
+} from "@mui/material";
 // components
-import Page from "../components/Page";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import axiosClient from "api/axiosClient";
+import { setErrorMsg } from "redux/alert";
 import {
   UserCard,
   ClassCard,
   AdminCard,
   AppConversionRates,
 } from "../components/_dashboard/app";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import axiosClient from "api/axiosClient";
-import { setErrorMsg } from "redux/alert";
+import Page from "../components/Page";
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
   const dispatch = useDispatch();
-  const [report, setReport] = useState({ admin: 0, user: 0, class: 0 });
+  const [report, setReport] = useState({ admin: 0,
+user: 0,
+class: 0 });
 
   async function fetchAPI() {
     try {

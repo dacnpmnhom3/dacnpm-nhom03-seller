@@ -36,12 +36,24 @@ import {
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "id", label: "ID", alignRight: false },
-  { id: "product", label: "Product", alignRight: false },
-  { id: "price", label: "Price", alignRight: false },
-  { id: "stock", label: "Quantity", alignRight: false },
-  { id: "category", label: "Category", alignRight: false },
-  { id: "createdAt", label: "Created At", alignRight: false },
+  { id: "id",
+label: "ID",
+alignRight: false },
+  { id: "product",
+label: "Product",
+alignRight: false },
+  { id: "price",
+label: "Price",
+alignRight: false },
+  { id: "stock",
+label: "Quantity",
+alignRight: false },
+  { id: "category",
+label: "Category",
+alignRight: false },
+  { id: "createdAt",
+label: "Created At",
+alignRight: false },
   { id: "" },
 ];
 // ----------------------------------------------------------------------
@@ -72,9 +84,8 @@ function applySortFilter(array, comparator, query) {
   if (query) {
     return filter(
       array,
-      (_user) =>
-        _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-        _user.email.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        || _user.email.toLowerCase().indexOf(query.toLowerCase()) !== -1,
     );
   }
   return stabilizedThis.map((el) => el[0]);
@@ -132,7 +143,7 @@ export default function Product() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
     setSelected(newSelected);
@@ -151,13 +162,12 @@ export default function Product() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - user.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - user.length) : 0;
 
   const filteredUsers = applySortFilter(
     user,
     getComparator(order, orderBy),
-    filterName
+    filterName,
   );
 
   const isUserNotFound = filteredUsers.length === 0;

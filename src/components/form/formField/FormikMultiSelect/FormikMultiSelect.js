@@ -10,8 +10,10 @@ for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
 }
 
-const FormikMultiSelect = (props) => {
-  const { label, options, defaultValue, ...rest } = props;
+function FormikMultiSelect(props) {
+  const {
+    label, options, defaultValue, ...rest
+  } = props;
   const [, meta, helpers] = useField(props);
 
   return (
@@ -34,7 +36,7 @@ const FormikMultiSelect = (props) => {
         }}
         fieldNames={{ ...rest }}
       >
-        {options.map((option, index) => (
+        {options.map((option) => (
           <Option key={option.value} value={option.value}>
             {option.label}
           </Option>
@@ -45,6 +47,6 @@ const FormikMultiSelect = (props) => {
       )}
     </FormControl>
   );
-};
+}
 
 export default FormikMultiSelect;

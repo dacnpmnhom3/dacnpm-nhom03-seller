@@ -1,4 +1,6 @@
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import {
+  Box, Container, Grid, Typography, Button,
+} from "@mui/material";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import ClassDetailForm from "components/_dashboard/class/ClassDetail";
 
@@ -37,33 +39,31 @@ export default function ClassDetail() {
     fetchAPI();
   }, []);
   return (
-    <>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Button
-            to="./../"
-            size="large"
-            variant="contained"
-            component={RouterLink}
-          >
-            Back
-          </Button>
-          <Typography sx={{ my: 3 }} variant="h4">
-            Class Detail
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item>
-              <ClassDetailForm classDetail={classDetail} />
-            </Grid>
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py: 2,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Button
+          to="./../"
+          size="large"
+          variant="contained"
+          component={RouterLink}
+        >
+          Back
+        </Button>
+        <Typography sx={{ my: 3 }} variant="h4">
+          Class Detail
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item>
+            <ClassDetailForm classDetail={classDetail} />
           </Grid>
-        </Container>
-      </Box>
-    </>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

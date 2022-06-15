@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { memo } from "react";
 import {
   StepLabel,
@@ -15,7 +16,7 @@ import {
 import { useSelector } from "react-redux";
 import FormikTextField from "components/form/formField/FormikTextField";
 
-const PropertiesStep = () => {
+function PropertiesStep() {
   const { selectedCategory } = useSelector((state) => state.product);
 
   return (
@@ -61,6 +62,6 @@ const PropertiesStep = () => {
       </StepContent>
     </>
   );
-};
+}
 
 export default memo(PropertiesStep);

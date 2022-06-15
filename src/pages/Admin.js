@@ -1,4 +1,4 @@
-import { filter } from "lodash";
+import { filter, sample } from "lodash";
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import axiosClient from "api/axiosClient";
 import { setErrorMsg } from "redux/alert";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
-import { sample } from "lodash";
+
 // material
 import {
   Card,
@@ -38,11 +38,31 @@ import {
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "fullName", label: "Name", alignRight: false },
-  { id: "email", label: "Email", alignRight: false },
-  { id: "address", label: "Address", alignRight: false },
-  { id: "phone", label: "Phone", alignRight: false },
-  { id: "createdAt", label: "Created At", alignRight: false },
+  {
+    id: "fullName",
+    label: "Name",
+    alignRight: false
+  },
+  {
+    id: "email",
+    label: "Email",
+    alignRight: false
+  },
+  {
+    id: "address",
+    label: "Address",
+    alignRight: false
+  },
+  {
+    id: "phone",
+    label: "Phone",
+    alignRight: false
+  },
+  {
+    id: "createdAt",
+    label: "Created At",
+    alignRight: false
+  },
   { id: "" },
 ];
 
@@ -99,13 +119,13 @@ export default function User() {
       const admins = res.data.map((e) => ({
         ...e,
         avatar: sample([
-          `/static/mock-images/avatars/avatar_1.jpg`,
-          `/static/mock-images/avatars/avatar_19.jpg`,
-          `/static/mock-images/avatars/avatar_20.jpg`,
-          `/static/mock-images/avatars/avatar_21.jpg`,
-          `/static/mock-images/avatars/avatar_22.jpg`,
-          `/static/mock-images/avatars/avatar_23.jpg`,
-          `/static/mock-images/avatars/avatar_24.jpg`,
+          "/static/mock-images/avatars/avatar_1.jpg",
+          "/static/mock-images/avatars/avatar_19.jpg",
+          "/static/mock-images/avatars/avatar_20.jpg",
+          "/static/mock-images/avatars/avatar_21.jpg",
+          "/static/mock-images/avatars/avatar_22.jpg",
+          "/static/mock-images/avatars/avatar_23.jpg",
+          "/static/mock-images/avatars/avatar_24.jpg",
         ]),
       }));
       setAdmin([...admins]);

@@ -7,7 +7,9 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-const RadioBtn = ({ label, options, defaultValue, onChange }) => {
+function RadioBtn({
+  label, options, defaultValue, onChange,
+}) {
   return (
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">{label}</FormLabel>
@@ -29,6 +31,6 @@ const RadioBtn = ({ label, options, defaultValue, onChange }) => {
       </RadioGroup>
     </FormControl>
   );
-};
+}
 
 export default RadioBtn;

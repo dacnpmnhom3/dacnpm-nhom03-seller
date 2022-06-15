@@ -16,10 +16,10 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import axiosClient from "api/axiosClient";
 import { setIsAuthenticated, setToken, setUser } from "redux/user";
 import { setErrorMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
+import axiosClient from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
@@ -41,22 +41,16 @@ export default function LoginForm() {
       remember: true,
     },
     validationSchema: LoginSchema,
+    // onSubmit: () => {
     onSubmit: async () => {
-      try {
-        // const res = await axiosClient.post("/api/seller/login", {
-        //   email: values.email,
-        //   password: values.password,
-        // });
-        const res = {
-          data: {
-            token: "token",
-            user: {
-              photoURL: "",
-            },
-          },
-        };
-        const { token, user } = res.data;
+      //navigate("/dashboard/app", { replace: true });
 
+      try {
+        const res = await axiosClient.post("/api/seller/login", {
+          email: values.email,
+          password: values.password,
+        });
+        const { token, user } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(setToken(token));

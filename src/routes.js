@@ -15,6 +15,7 @@ import Product from "./pages/Product";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import CreateProduct from "./pages/CreateProduct";
+import ProductList from "./pages/ProductList";
 
 import RequireAuth from "./components/authentication/RequireAuth";
 import RequireSignOut from "./components/authentication/RequireSignOut";
@@ -33,16 +34,30 @@ export default function Router() {
       ),
       children: [
         { element: <Navigate to="/dashboard/app" replace /> },
-        { path: "app", element: <DashboardApp /> },
-        { path: "users", element: <User /> },
-        { path: "orders", element: <Order /> },
-        { path: "profile", element: <Profile /> },
-        { path: "products", element: <Product /> },
-        { path: "products/create-product", element: <CreateProduct /> },
-        { path: "analytics", element: <DashboardApp /> },
-        { path: "products/:productId", element: <ProductDetail /> },
-        { path: "users/:userId", element: <UserDetail /> },
-        { path: "orders/:orderId", element: <OrderDetail /> },
+        {
+          path: "app",
+          element: <DashboardApp />,
+        },
+        { path: "orders",
+element: <Order /> },
+        { path: "analytics",
+element: <DashboardApp /> },
+        { path: "users",
+element: <User /> },
+        { path: "profile",
+element: <Profile /> },
+        { path: "products",
+element: <ProductList /> },
+        { path: "products/list",
+element: <ProductList /> },
+        { path: "products/create-product",
+element: <CreateProduct /> },
+        { path: "products/:productId",
+element: <ProductDetail /> },
+        { path: "users/:userId",
+element: <UserDetail /> },
+        { path: "orders/:orderId",
+element: <OrderDetail /> },
       ],
     },
     {
@@ -73,10 +88,19 @@ export default function Router() {
             </RequireSignOut>
           ),
         },
-        { path: "404", element: <NotFound /> },
-        { path: "*", element: <Navigate to="/404" /> },
+        {
+          path: "404",
+          element: <NotFound />,
+        },
+        {
+          path: "*",
+          element: <Navigate to="/404" />,
+        },
       ],
     },
-    { path: "*", element: <Navigate to="/404" replace /> },
+    {
+      path: "*",
+      element: <Navigate to="/404" replace />,
+    },
   ]);
 }

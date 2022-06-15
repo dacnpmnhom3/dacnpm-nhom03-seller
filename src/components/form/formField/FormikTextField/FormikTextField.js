@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { useField } from "formik";
 
-const FormikTextField = ({ ...props }) => {
+function FormikTextField({ ...props }) {
   const { ...rest } = props;
   const [field, meta] = useField(props);
 
@@ -15,6 +15,6 @@ const FormikTextField = ({ ...props }) => {
       error={Boolean(meta.touched && meta.error)}
     />
   );
-};
+}
 
 export default FormikTextField;

@@ -1,14 +1,16 @@
 import { Link as RouterLink } from "react-router-dom";
 // material
 import { styled } from "@mui/material/styles";
-import { Box, Card, Link, Container, Typography } from "@mui/material";
+import {
+  Box, Card, Link, Container, Typography,
+} from "@mui/material";
 // layouts
+import RegisterSeller from "components/authentication/register/RegisterSeller";
 import AuthLayout from "../layouts/AuthLayout";
 // components
 import Page from "../components/Page";
 import { MHidden } from "../components/@material-extend";
 import AuthSocial from "../components/authentication/AuthSocial";
-import RegisterSeller from "components/authentication/register/RegisterSeller";
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)(({ theme }) => ({
@@ -55,7 +57,9 @@ export default function Register() {
 
       <MHidden width="mdDown">
         <SectionStyle>
-          <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+          <Typography variant="h3" sx={{ px: 5,
+mt: 10,
+mb: 5 }}>
             Manage the job more effectively with Minimal
           </Typography>
           <img
@@ -79,21 +83,23 @@ export default function Register() {
           <Typography
             variant="body2"
             align="center"
-            sx={{ color: "text.secondary", mt: 3 }}
+            sx={{ color: "text.secondary",
+mt: 3 }}
           >
             By registering, I agree to Minimal&nbsp;
-            <Link underline="always" sx={{ color: "text.primary" }}>
+            <Link underline="always" sx={{ color: "text.primary" }} href="#">
               Terms of Service
             </Link>
             &nbsp;and&nbsp;
-            <Link underline="always" sx={{ color: "text.primary" }}>
+            <Link underline="always" sx={{ color: "text.primary" }} href="#">
               Privacy Policy
             </Link>
             .
           </Typography>
 
           <MHidden width="smUp">
-            <Typography variant="subtitle2" sx={{ mt: 3, textAlign: "center" }}>
+            <Typography variant="subtitle2" sx={{ mt: 3,
+textAlign: "center" }}>
               Already have an account?&nbsp;
               <Link to="/login" component={RouterLink}>
                 Login

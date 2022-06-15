@@ -9,14 +9,14 @@ import { Field } from "formik";
 
 import "./styles.css";
 
-const FormikDefaultCheckbox = ({ ...props }) => {
+function FormikDefaultCheckbox({ ...props }) {
   const { label, options, ...rest } = props;
 
   return (
     <FormControl className="formik-default-checkbox">
       <FormLabel>{label}</FormLabel>
       <FormGroup>
-        {options.map((option, index) => (
+        {options.map((option) => (
           <FormControlLabel
             key={option}
             label={option}
@@ -26,6 +26,6 @@ const FormikDefaultCheckbox = ({ ...props }) => {
       </FormGroup>
     </FormControl>
   );
-};
+}
 
 export default FormikDefaultCheckbox;

@@ -2,8 +2,8 @@
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
 // components
-import Page from "../components/Page";
 import CreateProductForm from "components/_dashboard/products/CreateProductForm/CreateProductForm";
+import Page from "../components/Page";
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)(({ theme }) => ({

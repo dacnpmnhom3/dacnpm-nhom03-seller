@@ -1,18 +1,13 @@
 import React, { memo } from "react";
 import {
-  TextField,
   FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
   FormHelperText,
 } from "@mui/material";
 import { useField, Field } from "formik";
 import SelectGroup from "../SelectGroup";
-import Select from "react-select";
 
-const FormikSelectGroup = ({ ...props }) => {
+function FormikSelectGroup({ ...props }) {
+  // eslint-disable-next-line react/prop-types
   const { label, options, ...rest } = props;
   const [field, meta, helpers] = useField(props);
 
@@ -28,9 +23,7 @@ const FormikSelectGroup = ({ ...props }) => {
               placeholder={label}
               selectedValue={meta.value}
               error={Boolean(meta.touched && meta.error)}
-              onChange={(selectedOption) =>
-                helpers.setValue(selectedOption.value)
-              }
+              onChange={(selectedOption) => helpers.setValue(selectedOption.value)}
               onBlur={helpers.setTouched}
             />
             {meta.touched && meta.error && (
@@ -41,6 +34,6 @@ const FormikSelectGroup = ({ ...props }) => {
       </Field>
     </FormControl>
   );
-};
+}
 
 export default memo(FormikSelectGroup);

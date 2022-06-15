@@ -1,11 +1,13 @@
-import { Stack, TextField, Button, CircularProgress } from "@mui/material";
+import {
+  Stack, TextField, Button, CircularProgress,
+} from "@mui/material";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useDocumentTitle } from "../../../hooks/custom";
 import axiosClient from "api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDocumentTitle } from "../../../hooks/custom";
 
 function RegisterSeller() {
   useDocumentTitle("Sign Up Page");
@@ -44,7 +46,8 @@ function RegisterSeller() {
           name="email"
           control={control}
           defaultValue=""
-          rules={{ required: true, pattern: /^\S+@\S+$/i }}
+          rules={{ required: true,
+pattern: /^\S+@\S+$/i }}
           render={({ field }) => {
             const check = errors.email
               ? { helperText: "Please enter a valid email" }
@@ -90,7 +93,8 @@ function RegisterSeller() {
           name="phone"
           control={control}
           defaultValue=""
-          rules={{ required: true, pattern: /^[0-9]{10,11}$/ }}
+          rules={{ required: true,
+pattern: /^[0-9]{10,11}$/ }}
           render={({ field }) => {
             const check = errors.phone
               ? { helperText: "Please enter a valid phone" }
@@ -113,13 +117,14 @@ function RegisterSeller() {
           name="password"
           control={control}
           defaultValue=""
-          rules={{ required: true, minLength: 6 }}
+          rules={{ required: true,
+minLength: 6 }}
           render={({ field }) => {
             const check = errors.password
               ? {
-                  helperText: "Password must be at least 6 characters",
-                  error: true,
-                }
+                helperText: "Password must be at least 6 characters",
+                error: true,
+              }
               : null;
             return (
               <TextField
@@ -140,12 +145,12 @@ function RegisterSeller() {
           name="confirmPassword"
           control={control}
           defaultValue=""
-          rules={{ required: true, minLength: 6 }}
+          rules={{ required: true,
+minLength: 6 }}
           render={({ field }) => {
-            const check =
-              watch("password") !== watch("confirmPassword")
-                ? { helperText: "Password does not match." }
-                : null;
+            const check = watch("password") !== watch("confirmPassword")
+              ? { helperText: "Password does not match." }
+              : null;
 
             return (
               <TextField

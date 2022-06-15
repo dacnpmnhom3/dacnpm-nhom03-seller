@@ -1,15 +1,19 @@
+/* eslint-disable no-underscore-dangle */
 import { useState, useEffect, useCallback } from "react";
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Stack, Step, Stepper, Button } from "@mui/material";
+import {
+  Stack, Step, Stepper, Button,
+} from "@mui/material";
 
 // Redux
 import { setErrorMsg, setSuccessMsg } from "redux/alert";
 // Mocks
 import { CATEGORIES } from "_mocks_/products";
 
+import axiosClient from "api/axiosClient";
 import {
   initialValues,
   createProductFormModel,
@@ -20,7 +24,6 @@ import GeneralInfoStep from "./GeneralInfoStep";
 import { addOptionValidationSchema } from "./AddOptionStep/validationSchema";
 import { propertiesValidationSchema } from "./PropertiesStep/validationSchema";
 import { generalInfoValidationSchema } from "./GeneralInfoStep/validationSchema";
-import axiosClient from "api/axiosClient";
 // ----------------------------------------------------------------------
 
 export default function CreateProductForm() {
@@ -38,20 +41,6 @@ export default function CreateProductForm() {
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === 3 - 1;
 
-  useEffect(() => {
-    getCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    selectedCategory?.properties?.map((property) => {
-      const subProp = property.sub_properties.map((subPropName) => ({
-        [subPropName]: "",
-      }));
-      return (initialValues.properties[property._id] = subProp);
-    });
-  }, [selectedCategory.properties]);
-
   const getCategories = async () => {
     try {
       // const res = await axiosClient.get("/api/products/categories");
@@ -63,11 +52,26 @@ export default function CreateProductForm() {
     }
   };
 
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    selectedCategory?.properties?.map((property) => {
+      const subProp = property.sub_properties.map((subPropName) => ({
+        [subPropName]: "",
+      }));
+      // eslint-disable-next-line no-return-assign
+      return (initialValues.properties[property._id] = subProp);
+    });
+  }, [selectedCategory.properties]);
+
   const handleBack = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   }, []);
 
   const generateVariationField = (attributes) => {
+    // eslint-disable-next-line no-empty
     if (attributes.length > 1) {
     } else if (attributes.length === 1) {
       initialValues.variations = attributes[0].map((attr) => ({
@@ -106,8 +110,7 @@ export default function CreateProductForm() {
         actions.setSubmitting(false);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeStep]
+    [activeStep],
   );
 
   const handleSubmit = useCallback(
@@ -120,9 +123,8 @@ export default function CreateProductForm() {
         actions.setTouched({});
         actions.setSubmitting(false);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
-    [isLastStep, submitForm]
+    [isLastStep, submitForm],
   );
 
   return (
@@ -130,7 +132,7 @@ export default function CreateProductForm() {
       initialValues={initialValues}
       validationSchema={validation[activeStep]}
       onSubmit={handleSubmit}
-    // enableReinitialize={true}
+      // enableReinitialize={true}
     >
       {({ isSubmitting, values }) => (
         <Stack spacing={3}>
@@ -166,12 +168,14 @@ export default function CreateProductForm() {
                 loadingIndicator="Submitting..."
                 type="submit"
                 variant="contained"
-                sx={{ mt: 1, mr: 1 }}
+                sx={{ mt: 1,
+mr: 1 }}
               >
                 {isLastStep ? "Add product" : "Continue"}
               </LoadingButton>
               <Button
-                sx={{ mt: 1, mr: 1 }}
+                sx={{ mt: 1,
+mr: 1 }}
                 disabled={activeStep === 0 || isSubmitting}
                 onClick={handleBack}
               >

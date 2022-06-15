@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const ReviewNewProduct = () => {
+function ReviewNewProduct() {
   return (
     <div>ReviewNewProduct</div>
-  )
+  );
 }
 
-export default ReviewNewProduct
+export default ReviewNewProduct;

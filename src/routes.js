@@ -5,15 +5,12 @@ import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 //
 import Login from "./pages/Login";
 import DashboardApp from "./pages/DashboardApp";
-import Admin from "./pages/Admin";
 import User from "./pages/User";
-import Class from "./pages/Class";
+import Order from "./pages/Order";
 import NotFound from "./pages/Page404";
-import CreateAdmin from "./pages/CreateAdmin";
 import Profile from "./pages/Profile";
 import UserDetail from "./pages/UserDetail";
-import ClassDetail from "./pages/ClassDetail";
-import AdminDetail from "./pages/AdminDetail";
+import OrderDetail from "./pages/OrderDetail";
 import Product from "./pages/Product";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
@@ -37,18 +34,15 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" replace /> },
         { path: "app", element: <DashboardApp /> },
-        { path: "admins", element: <Admin /> },
         { path: "users", element: <User /> },
-        { path: "sellers", element: <User /> },
-        { path: "classes", element: <Class /> },
+        { path: "orders", element: <Order /> },
         { path: "profile", element: <Profile /> },
         { path: "products", element: <Product /> },
         { path: "products/create-product", element: <CreateProduct /> },
+        { path: "analytics", element: <DashboardApp /> },
         { path: "products/:productId", element: <ProductDetail /> },
-        { path: "admins/create-admin", element: <CreateAdmin /> },
-        { path: "admins/:adminId", element: <AdminDetail /> },
         { path: "users/:userId", element: <UserDetail /> },
-        { path: "classes/:classId", element: <ClassDetail /> },
+        { path: "orders/:orderId", element: <OrderDetail /> },
       ],
     },
     {
